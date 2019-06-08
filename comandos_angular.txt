@@ -1,0 +1,3 @@
+ng g s "service name"
+ng g c "component name" --skipTests
+ng g class model/cliente --skipTests
