@@ -10,6 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { from } from 'rxjs';
 import { BoardgameListComponent } from './components/boardgame-list/boardgame-list.component';
+import { WebcartComponent } from './components/webcart/webcart.component';
+import { UserComponent } from './components/user/user.component';
+import { LoginComponent } from './components/login/login.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -17,13 +21,17 @@ import { BoardgameListComponent } from './components/boardgame-list/boardgame-li
     AppComponent,
     BoardgameComponent,
     NavBarComponent,
-    BoardgameListComponent
+    BoardgameListComponent,
+    WebcartComponent,
+    UserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

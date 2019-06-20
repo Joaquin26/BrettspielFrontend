@@ -24,8 +24,21 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Promociones</a>
         </li>
+        <div *ngIf="user.id == -1">
+        <li class="nav-item">
+          <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" style="color: green" data-toggle="modal" data-target="#exampleModal" >Login</a>
+        </li>
+        </div>
+        <div *ngIf="user.id != -1">
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: green" > {{user.username}}</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" style="color: green"  (click)="logOut()" style="color:red"   >LogOut</a>
+              </div>
+          </li>
+          </div>
       </ul>
-     <ul  class="navbar-nav" >
+     <ul  class="navbar-nav justify-content-center">
        
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Mi cuenta</a>
@@ -39,6 +52,37 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </li>
+
      </ul>
     </div>
   </nav>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="logIn()">
+            <div class="form-group col-md-6">
+              <label for="username">Username :</label>
+              <input type="text" class="form-control" id="username" name="username" 
+              placeholder="Ingrese su username" required [(ngModel)]="user.username">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="password">Password :</label>
+              <input type="text" class="form-control" id="password" name="password" 
+              placeholder="Ingrese su password" required [(ngModel)]="user.password">
+            </div>
+             <button type="submit" class="btn btn-success">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button id ="ModalButton" [hidden]="true" data-toggle="modal" data-target="#exampleModal">Open Modal</button>
