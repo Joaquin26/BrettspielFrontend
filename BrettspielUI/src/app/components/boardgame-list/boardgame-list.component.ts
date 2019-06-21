@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BoardgameService } from '../../services/boardgame.service';
 import { BoardGame } from '../../model/Boardgame';
 import { Router, ActivatedRoute } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -14,11 +15,15 @@ export class BoardgameListComponent implements OnInit {
   boardgames: BoardGame[];
   minCost: Number;
   maxCost: Number;
+  min:Number;
+  max:Number;
   minNumberPlayers: Number;
   age: Number;
   category: String;
 
   constructor(private boardgameService: BoardgameService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.min=0;
+    this.max=200;
     this.minCost = 0;
     this.maxCost = 200;
     this.minNumberPlayers = 1;
@@ -27,7 +32,7 @@ export class BoardgameListComponent implements OnInit {
 
   ngOnInit() {
     this.category = this.activatedRoute.snapshot.params.category;
-    console.log(this.category);
+
     if (this.category == null)
       this.loadData();
     else
@@ -41,6 +46,10 @@ export class BoardgameListComponent implements OnInit {
   }
 
   loadFilterData() {
+    if(this.minCost==null || this.minCost>200)
+      this.minCost=0;
+    if(this.maxCost==null || this.maxCost>200 || this.maxCost<this.minCost)
+      this.maxCost=200;
     this.boardgameService.getBoardGameListFilter(this.category, this.age, this.minCost, this.maxCost, this.minNumberPlayers)
       .subscribe(boardgames => this.boardgames = boardgames);
   }
@@ -55,6 +64,11 @@ export class BoardgameListComponent implements OnInit {
     this.age=age;
     if(this.category!=null)
       this.loadFilterData();
+  }
+
+  public searchByPrice(){
+    if(this.category!=null)
+    this.loadFilterData();
   }
 
   public gotoProductDetailsV2(url, id) {

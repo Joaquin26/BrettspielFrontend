@@ -1,5 +1,18 @@
 <div class="row">
   <div class="form-check col-md-2">
+    <br>
+    <label class="" for="">RANGO DE PRECIO</label>
+    <br>
+    <form class="row">
+        <div class="col-md-4">
+          <input type="number" class="form-control" placeholder="Min" name="min" id="MinCost" [(ngModel)]="minCost">
+        </div>
+        <div class="col-md-4">
+          <input type="number" class="form-control" placeholder="Max" name="max" id="MaxCost" [(ngModel)]="maxCost">
+        </div>
+        <button class="col-md-2" (click)="searchByPrice()">Ir</button>
+    </form>
+    <br>
     <label class="" for="">Nº DE JUGADORES</label>
     <br>
     <div class="form-check">
@@ -30,32 +43,35 @@
     <br>
     <label class="" for="">EDAD RECOMENDADA</label>
     <div class="form-check">
-        <input class="form-check-input" (click)="setAge(8)" type="radio" name="minAge" id="minPlayers1"
-          value="option1" checked>
-        <label class="form-check-label" for="minPlayers1">8+</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" (click)="setAge(10)" type="radio" name="minAge" id="minPlayers2"
-          value="option2">
-        <label class="form-check-label" for="minPlayers1">10+</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" (click)="setAge(12)" type="radio" name="minAge" id="minPlayers3"
-          value="option3">
-        <label class="form-check-label" for="minPlayers2">12+</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" (click)="setAge(13)" type="radio" name="minAge" id="minPlayers4"
-          value="option4">
-        <label class="form-check-label" for="minPlayers3">13+</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" (click)="setAge(14)" type="radio" name="minAge" id="minPlayers5"
-          value="option5">
-        <label class="form-check-label" for="minPlayers3">14+</label>
-      </div>
+      <input class="form-check-input" (click)="setAge(8)" type="radio" name="minAge" id="minPlayers1" value="option1"
+        checked>
+      <label class="form-check-label" for="minPlayers1">8+</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setAge(10)" type="radio" name="minAge" id="minPlayers2" value="option2">
+      <label class="form-check-label" for="minPlayers1">10+</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setAge(12)" type="radio" name="minAge" id="minPlayers3" value="option3">
+      <label class="form-check-label" for="minPlayers2">12+</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setAge(13)" type="radio" name="minAge" id="minPlayers4" value="option4">
+      <label class="form-check-label" for="minPlayers3">13+</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setAge(14)" type="radio" name="minAge" id="minPlayers5" value="option5">
+      <label class="form-check-label" for="minPlayers3">14+</label>
+    </div>
   </div>
   <div class="card-deck col-md-10">
+    <h1 *ngIf="category!=null" class="col-md-12">
+      {{category}}
+    </h1>
+    <h1 *ngIf="category==null" class="col-md-12">
+        Juegos de Mesa
+      </h1>
+    <br>
     <div *ngFor="let boardgame of boardgames" class="col-md-2 card"
       (click)="gotoProductDetailsV2('/boardgame',boardgame.id)">
       <div class=" text-center ">
