@@ -19,6 +19,7 @@ import { WebcartDetailsBoardgameDetailComponent } from './components/checkout/we
 import { WebcartCheckoutComponent } from './components/checkout/webcart-checkout/webcart-checkout.component';
 // tslint:disable-next-line:max-line-length
 import { WebcartDetailsSnackDetailComponent } from './components/checkout/webcart-details-snack-detail/webcart-details-snack-detail.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
@@ -33,7 +34,9 @@ import { WebcartDetailsSnackDetailComponent } from './components/checkout/webcar
     WebcartDetailsListComponent,
     WebcartDetailsBoardgameDetailComponent,
     WebcartCheckoutComponent,
-    WebcartDetailsSnackDetailComponent
+    WebcartDetailsSnackDetailComponent,
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

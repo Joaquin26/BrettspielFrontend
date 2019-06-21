@@ -7,7 +7,7 @@ import {WebcartCheckoutComponent} from './components/checkout/webcart-checkout/w
 
 const routes: Routes = [
     { path: '', redirectTo: 'boardgames', pathMatch: 'full' },
-    { path: 'boardgame/:id', component: BoardgameComponent },
+    { path: 'boardgame/:name', component: BoardgameComponent },
     { path: 'boardgames', component: BoardgameListComponent },
     { path: 'boardgames/:category', component: BoardgameListComponent },
     { path: 'customer/:id/webcart', component: WebcartComponent },

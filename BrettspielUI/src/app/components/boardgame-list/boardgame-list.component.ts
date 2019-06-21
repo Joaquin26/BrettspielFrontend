@@ -3,6 +3,8 @@ import { BoardgameService } from '../../services/boardgame.service';
 import { BoardGame } from '../../model/Boardgame';
 import { Router, ActivatedRoute } from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { CategoryService } from 'src/app/services/category.service';
+import { Category } from 'src/app/model/Category';
 
 
 @Component({
@@ -15,15 +17,17 @@ export class BoardgameListComponent implements OnInit {
   boardgames: BoardGame[];
   minCost: Number;
   maxCost: Number;
-  min:Number;
-  max:Number;
+  min: Number;
+  max: Number;
   minNumberPlayers: Number;
   age: Number;
-  category: String;
+  boardGameName:String; 
+  category: Category;
 
-  constructor(private boardgameService: BoardgameService, private router: Router, private activatedRoute: ActivatedRoute) {
-    this.min=0;
-    this.max=200;
+  constructor(private boardgameService: BoardgameService, private categoryService: CategoryService, private router: Router,
+    private activatedRoute: ActivatedRoute) {
+    this.min = 0;
+    this.max = 200;
     this.minCost = 0;
     this.maxCost = 200;
     this.minNumberPlayers = 1;
@@ -31,12 +35,13 @@ export class BoardgameListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.category = this.activatedRoute.snapshot.params.category;
-
-    if (this.category == null)
+    let categoryName = this.activatedRoute.snapshot.params.category;
+    if (categoryName == null)
       this.loadData();
-    else
-      this.loadFilterData();
+    else {
+      this.loadCategory(categoryName);
+      this.loadFilterData(categoryName);
+    }
 
   }
 
@@ -45,34 +50,41 @@ export class BoardgameListComponent implements OnInit {
       .subscribe(boardgames => this.boardgames = boardgames);
   }
 
-  loadFilterData() {
-    if(this.minCost==null || this.minCost>200)
-      this.minCost=0;
-    if(this.maxCost==null || this.maxCost>200 || this.maxCost<this.minCost)
-      this.maxCost=200;
-    this.boardgameService.getBoardGameListFilter(this.category, this.age, this.minCost, this.maxCost, this.minNumberPlayers)
+  loadCategory(categoryName: String) {
+    this.categoryService.getCtegory(categoryName)
+      .subscribe(category => this.category = category);
+  }
+
+  loadFilterData(categoryName: String) {
+    if (this.minCost == null || this.minCost > 200)
+      this.minCost = 0;
+    if (this.maxCost == null || this.maxCost > 200 || this.maxCost < this.minCost)
+      this.maxCost = 200;
+    if(this.boardGameName==null)
+      this.boardGameName="";
+    this.boardgameService.getBoardGameListFilter(categoryName, this.age, this.minCost, this.maxCost, this.minNumberPlayers,this.boardGameName)
       .subscribe(boardgames => this.boardgames = boardgames);
   }
 
-  public setPlayers(players){
-    this.minNumberPlayers=players;
-    if(this.category!=null)
-      this.loadFilterData();
+  public setPlayers(players) {
+    this.minNumberPlayers = players;
+    this.switchLoadData();
   }
 
-  public setAge(age){
-    this.age=age;
-    if(this.category!=null)
-      this.loadFilterData();
+  public setAge(age) {
+    this.age = age;
+    this.switchLoadData();
   }
 
-  public searchByPrice(){
-    if(this.category!=null)
-    this.loadFilterData();
+  public switchLoadData(){
+    if (this.category != null)
+      this.loadFilterData(this.category.name);
+    else
+      this.loadFilterData("");
   }
 
-  public gotoProductDetailsV2(url, id) {
-    var myurl = `${url}/${id}`;
+  public gotoProductDetailsV2(url, name) {
+    var myurl = `${url}/${name}`;
     this.router.navigateByUrl(myurl);
   }
 }

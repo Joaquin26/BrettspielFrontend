@@ -1,45 +1,69 @@
-<h1>{{boardgame.name}}</h1>
 <div class="row">
-  <img [src]=boardgame.images[0].url class="col-md-3">
+  <div class="col-md-3 text-center">
+    <img [src]=boardgame.images[0].url class="col-md-12">
+    <a href="#" class="btn btn-warning " routerlink="boardgame">
+      <i class="fas fa-heart"></i>
+      Añadir a favoritos
+    </a>
+  </div>
+
   <div class="col-md-5">
+    <h1 class="col-md-4">{{boardgame.name}}</h1>
+
     <ul class=" nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
           aria-selected="true">Descripción</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
           aria-selected="false">Ficha Tecnica</a>
       </li>
-      <!-- <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-    </li> -->
+
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab">
         {{boardgame.description}}</div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <form>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Precio:</label>
-            <div class="col-sm-10">
+            <label class="col-sm-4 col-form-label">Nº DE JUGADORES:</label>
+            <div class="col-sm-8">
+              <label class="form-control-plaintext">De {{boardgame.minNumberPlayers}} a
+                {{boardgame.maxNumberPlayers}}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">EDAD RECOMENDADA:</label>
+            <div class="col-sm-8">
+              <label class="form-control-plaintext">{{boardgame.minAge}}+</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">PRECIO:</label>
+            <div class="col-sm-8">
               <label class="form-control-plaintext">S/.{{boardgame.cost}}</label>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Tutorial:</label>
-            <div class="col-sm-10">
-              <a class="form-control-plaintext" [href]="boardgame.tutorialLink">{{boardgame.tutorialLink}}</a>
-            </div>
-          </div>
-            <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Alquiler:</label>
-            <div class="col-sm-10">
+            <label class="col-sm-4 col-form-label">ALQUILER:</label>
+            <div class="col-sm-8">
               <label class="form-control-plaintext">S/.{{boardgame.pricePerDay}}</label>
             </div>
           </div>
         </form>
       </div>
+      <br>
+      <a [href]="boardgame.tutorialLink" class="btn btn-primary btn-class col-md-3" routerlink="boardgame">
+        <i class="fab fa-youtube"></i>
+        Ver tutorial
+      </a>
+      <label for="" class="label-class">Cant:</label>
+      <input type="number" class="input-class col-md-1" [(ngModel)]="cant">
+      <a href="#" class="btn btn-primary" routerlink="boardgame">
+        <i class="fas fa-shopping-cart"></i>
+        Anadir al carrito
+      </a>
       <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> -->
     </div>
   </div>
