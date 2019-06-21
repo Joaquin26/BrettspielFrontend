@@ -23,8 +23,8 @@ export class BoardgameService {
       return this.http.get(`${this.baseURL}/filter/${age}/${minCost}/${maxCost}/${minNumberPlayers}/${boardgameName}`);
   }
 
-  getBoardGame(id:number):Observable<any>{
-    return this.http.get(`${this.baseURL}/${id}`);
+  getBoardGame(name:String):Observable<any>{
+    return this.http.get(`${this.baseURL}/name/${name}`);
   }
 
 }

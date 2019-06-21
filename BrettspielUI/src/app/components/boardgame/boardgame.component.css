@@ -1,0 +1,14 @@
+.btn-class{
+    margin-right: 20%;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.input-class{
+    margin-right: 5%;
+}
+.label-class{
+    margin-right: 2%;
+}

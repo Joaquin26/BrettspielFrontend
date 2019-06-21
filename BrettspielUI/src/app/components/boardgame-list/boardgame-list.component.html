@@ -54,8 +54,7 @@
     <br>
     <label class="" for="">EDAD RECOMENDADA</label>
     <div class="form-check">
-      <input class="form-check-input" (click)="setAge(8)" type="radio" name="minAge" id="age1" value="option1"
-        checked>
+      <input class="form-check-input" (click)="setAge(8)" type="radio" name="minAge" id="age1" value="option1" checked>
       <label class="form-check-label" for="age1">8+</label>
     </div>
     <div class="form-check">
@@ -85,18 +84,20 @@
     <h1 *ngIf="category==null" class="col-md-12">
       Juegos de Mesa
     </h1>
-    <p *ngIf="category==null" class="col-md-12"> Para reunir a la familia y pasar una agradable velada, no hay nada mejor que un juego de mesa. Explora esta sección 
+    <p *ngIf="category==null" class="col-md-12"> Para reunir a la familia y pasar una agradable velada, no hay nada
+      mejor que un juego de mesa. Explora esta sección
       y encuentra los mejores juegos de mesa que tenemos para ofrecerte.</p>
     <div *ngFor="let boardgame of boardgames" class="col-md-2 card"
-      (click)="gotoProductDetailsV2('/boardgame',boardgame.id)">
+      (click)="gotoProductDetailsV2('/boardgame',boardgame.name)">
       <div class=" text-center ">
         <img [src]=boardgame.images[0].url class="imag-card card-img-top ">
         <div class="card-body">
           <h5 class="card-title">{{boardgame.name}}</h5>
           <p class="card-text">Precio por día: S/.{{boardgame.pricePerDay}}</p>
           <a href="#" class="btn btn-primary" routerlink="boardgame">
-              <i class="fas fa-shopping-cart"></i>
-            Alquilar</a>
+            <i class="fas fa-shopping-cart"></i>
+            Alquilar
+          </a>
         </div>
       </div>
     </div>

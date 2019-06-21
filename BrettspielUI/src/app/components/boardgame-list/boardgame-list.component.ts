@@ -83,8 +83,8 @@ export class BoardgameListComponent implements OnInit {
       this.loadFilterData("");
   }
 
-  public gotoProductDetailsV2(url, id) {
-    var myurl = `${url}/${id}`;
+  public gotoProductDetailsV2(url, name) {
+    var myurl = `${url}/${name}`;
     this.router.navigateByUrl(myurl);
   }
 }
