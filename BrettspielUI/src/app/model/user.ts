@@ -1,9 +1,9 @@
 export class User {
-    id:Number
-    username:String
-    password:String
-    name:String
-    email:String
-    reputation:Number
-    membershipId:Number
+    id: number;
+    username: string;
+    password: string;
+    name: string;
+    email: string;
+    reputation: number;
+    membershipId: number;
 }
