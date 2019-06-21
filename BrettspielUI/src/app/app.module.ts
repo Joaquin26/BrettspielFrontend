@@ -14,6 +14,7 @@ import { WebcartComponent } from './components/webcart/webcart.component';
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CommonModule } from '@angular/common';
     BoardgameListComponent,
     WebcartComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
