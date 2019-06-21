@@ -1,11 +1,104 @@
-<div class="row">
-  <div *ngFor="let boardgame of boardgames" class="col-md-2 " (click)="gotoProductDetailsV2('/boardgame',boardgame.id)">
-    <div class="card text-center " >
-      <img [src]=boardgame.images[0].url class="imag-card card-img-top ">
-      <div class="card-body" >
-        <h5 class="card-title">{{boardgame.name}}</h5>
-        <p class="card-text">Precio por día: S/.{{boardgame.pricePerDay}}</p>
-        <a href="#" class="btn btn-primary" routerlink="boardgame">Alquilar</a>
+<div class="row ">
+  <!-- <div class="col-md-1"></div> -->
+  <div class="form-check col-md-2 filtros ">
+    <br>
+    <label class="" for="">NOMBRE DEL JUEGO</label>
+    <br>
+    <form class="row">
+      <div class="col-md-8">
+        <input type="text" class="form-control" placeholder="Nombre" name="min" id="MinCost"
+          [(ngModel)]="boardGameName">
+      </div>
+      <button class="col-md-2" (click)="switchLoadData()">Ir</button>
+    </form>
+    <br>
+    <label class="" for="">RANGO DE PRECIO</label>
+    <br>
+    <form class="row">
+      <div class="col-md-4">
+        <input type="number" class="form-control" placeholder="Min" name="min" id="MinCost" [(ngModel)]="minCost">
+      </div>
+      <div class="col-md-4">
+        <input type="number" class="form-control" placeholder="Max" name="max" id="MaxCost" [(ngModel)]="maxCost">
+      </div>
+      <button class="col-md-2" (click)="switchLoadData()">Ir</button>
+    </form>
+    <br>
+    <label class="" for="">Nº DE JUGADORES</label>
+    <br>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setPlayers(1)" type="radio" name="minPlayers" id="minPlayers1"
+        value="option1" checked>
+      <label class="form-check-label" for="minPlayers1">De 1 a más</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setPlayers(2)" type="radio" name="minPlayers" id="minPlayers2"
+        value="option2">
+      <label class="form-check-label" for="minPlayers2">De 2 a más</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setPlayers(3)" type="radio" name="minPlayers" id="minPlayers3"
+        value="option3">
+      <label class="form-check-label" for="minPlayers3">De 3 a más</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setPlayers(4)" type="radio" name="minPlayers" id="minPlayers4"
+        value="option4">
+      <label class="form-check-label" for="minPlayers4">De 4 a más</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setPlayers(5)" type="radio" name="minPlayers" id="minPlayers5"
+        value="option5">
+      <label class="form-check-label" for="minPlayers5">De 5 a más</label>
+    </div>
+    <br>
+    <label class="" for="">EDAD RECOMENDADA</label>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setAge(8)" type="radio" name="minAge" id="age1" value="option1" checked>
+      <label class="form-check-label" for="age1">8+</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setAge(10)" type="radio" name="minAge" id="age2" value="option2">
+      <label class="form-check-label" for="age2">10+</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setAge(12)" type="radio" name="minAge" id="age3" value="option3">
+      <label class="form-check-label" for="age3">12+</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setAge(13)" type="radio" name="minAge" id="age4" value="option4">
+      <label class="form-check-label" for="age4">13+</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setAge(14)" type="radio" name="minAge" id="age5" value="option5">
+      <label class="form-check-label" for="age5">14+</label>
+    </div>
+  </div>
+  <div class="card-deck col-md-9">
+    <h1 *ngIf="category!=null" class="col-md-12">
+      {{category.name}}
+    </h1>
+    <p *ngIf="category!=null" class="col-md-12">
+      {{category.description}}
+    </p>
+    <h1 *ngIf="category==null" class="col-md-12">
+      Juegos de Mesa
+    </h1>
+    <p *ngIf="category==null" class="col-md-12"> Para reunir a la familia y pasar una agradable velada, no hay nada
+      mejor que un juego de mesa. Explora esta sección
+      y encuentra los mejores juegos de mesa que tenemos para ofrecerte.</p>
+    <div *ngFor="let boardgame of boardgames" class="col-md-2 card"
+      (click)="gotoProductDetailsV2('/boardgame',boardgame.name)">
+      <div class=" text-center ">
+        <img [src]=boardgame.images[0].url class="imag-card card-img-top ">
+        <div class="card-body">
+          <h5 class="card-title">{{boardgame.name}}</h5>
+          <p class="card-text">Precio por día: S/.{{boardgame.pricePerDay}}</p>
+          <a href="#" class="btn btn-primary" routerlink="boardgame">
+            <i class="fas fa-shopping-cart"></i>
+            Alquilar
+          </a>
+        </div>
       </div>
     </div>
   </div>

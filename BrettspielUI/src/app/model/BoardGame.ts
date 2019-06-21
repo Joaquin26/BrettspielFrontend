@@ -2,9 +2,9 @@ import { Image } from "../model/Image";
 
 export class BoardGame {
     id:number;
-    name:string;
-    description:string;
-    tutorialLink:string;
+    name:String;
+    description:String;
+    tutorialLink:String;
     available:number;
     stock:number;
     rented:number;

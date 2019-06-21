@@ -15,6 +15,8 @@ import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common';
 import {UserService} from 'src/app/services/user.service'
+import { NotFoundComponent } from './components/not-found/not-found.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {UserService} from 'src/app/services/user.service'
     BoardgameListComponent,
     WebcartComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,  

@@ -16,9 +16,7 @@
           Juegos de mesa
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a *ngFor="let category of categories" class="dropdown-item" href="#">{{category.name}}</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Another action</a>
+            <a *ngFor="let category of categories" class="dropdown-item"  [href]="" (click)="goToCategory(category.name)">{{category.name}}</a>
           <!-- 
             <a class="dropdown-item" href="#">Something else here</a> -->
         </div>

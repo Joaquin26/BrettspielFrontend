@@ -12,17 +12,19 @@ import { ActivatedRoute } from '@angular/router';
 export class BoardgameComponent implements OnInit {
 
   boardgame: BoardGame;
-  id:number;
+  name:String;
+  cant:Number;
   constructor(private boardgameService: BoardgameService, private activatedRoute: ActivatedRoute) {
+    this.cant=1;
   }
 
   ngOnInit() {
-    this.id= this.activatedRoute.snapshot.params.id;
+    this.name= this.activatedRoute.snapshot.params.name;
     this.loadData();
   }
 
   loadData(){
-    this.boardgameService.getBoardGame(this.id)
+    this.boardgameService.getBoardGame(this.name)
       .subscribe(boardgame => this.boardgame = boardgame);
     }
 }

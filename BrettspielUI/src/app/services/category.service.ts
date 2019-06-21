@@ -14,4 +14,8 @@ export class CategoryService {
   getCategoryList():Observable<any>{
     return this.http.get(`${this.baseURL}`);
   }
+
+  getCtegory(name:String):Observable<any>{
+    return this.http.get(`${this.baseURL}/name/${name}`);
+  }
 }

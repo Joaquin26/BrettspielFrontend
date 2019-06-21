@@ -4,26 +4,30 @@ import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import { Membership } from 'src/app/model/MemberShip';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/services/category.service';
+
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
+  
+  index:Boolean
   categories: Category[];
   user: User;
-  index: Boolean;
   @ViewChild('ModalButton', { static: false }) myModal;
 
 
-  constructor(private userService: UserService,private router:Router ) { this.user = new User(); }
+  constructor(private userService: UserService, private categoryService: CategoryService,private router: Router) { }
 
   ngOnInit() {
     this.index = new Boolean();
     this.index=false;
     this.userService.currentUser.subscribe(user => this.user = user)
     this.checkSession();
+    this.loadData()
     
   }
   checkSession() {
@@ -37,6 +41,10 @@ export class NavBarComponent implements OnInit {
       fakeuser.username="";
       this.userService.user.next(fakeuser)
     }
+  }
+  loadData() {
+    this.categoryService.getCategoryList()
+      .subscribe(categories => this.categories = categories);
   }
   logIn() {
     this.userService.logIn(this.user.username, this.user.password)
@@ -95,5 +103,9 @@ export class NavBarComponent implements OnInit {
   Cuenta()
   {
     this.router.navigateByUrl('/user/'+this.user.username)
+  }
+  goToCategory(name){
+    var myurl = `boardgames/${name}`;
+    this.router.navigateByUrl(myurl);
   }
 }
