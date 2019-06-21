@@ -1,0 +1,61 @@
+<table class="table table-sm">
+    <thead>
+    <tr>
+        <th scope="col">Producto</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Disponibilidad</th>
+        <th scope="col">Precio por día unitario</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio por día total</th>
+        <th scope="col">Condición</th>
+        <th scope="col">Precio total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let webcartDetail of webcartDetails">
+        <tr *ngIf="webcartDetail.boardGame != null">
+            <td><img [src]=webcartDetail.boardGame.images[0].url alt="boardgameImage" height="100" width="100"></td>
+            <td>{{ webcartDetail.boardGame.name }}</td>
+
+            <td *ngIf="webcartDetail.boardGame.available > 0; else notAvailable">
+                Disponible
+            </td>
+            <ng-template #notAvailable>
+                No Disponible
+            </ng-template>
+
+            <td>S/.{{ webcartDetail.boardGame.pricePerDay }}</td>
+            <td><label><input type="number" value="{{ webcartDetail.quantity }}" min="1" max="{{ webcartDetail.boardGame.available }}" step="1"/></label></td>
+            <td>S/.{{ webcartDetail.quantity * webcartDetail.boardGame.pricePerDay }}</td>
+            <td>
+                <button class="btn btn-primary" data-target="#conditionModal" data-toggle="modal" type="button">
+                    Ver
+                </button>
+            </td>
+            <td>S/.{{ this.rentDays * webcartDetail.quantity * webcartDetail.boardGame.pricePerDay }}</td>
+        </tr>
+    </ng-container>
+    </tbody>
+</table>
+
+<div aria-hidden="true" aria-labelledby="condicionModalLabel" class="modal fade" id="conditionModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="condicionModalLabel">Condición</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p *ngFor="let webcartDetail of webcartDetails">
+                    <span *ngIf="webcartDetail.boardGame != null"></span>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

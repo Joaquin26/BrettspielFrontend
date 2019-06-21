@@ -1,0 +1,33 @@
+<table class="table table-sm">
+  <thead>
+  <tr>
+    <th scope="col">Producto</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Disponibilidad</th>
+    <th scope="col">Precio unitario</th>
+    <th scope="col">Cantidad</th>
+    <th scope="col">Precio total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let webcartDetail of webcartDetails">
+    <tr *ngIf="webcartDetail.snack != null">
+      <td><img [src]=webcartDetail.snack.images[0].url alt="snackImage" width="100" height="100"></td>
+      <td>{{ webcartDetail.snack.name }}</td>
+
+      <td *ngIf="webcartDetail.snack.stock > 0; else notAvailable">
+        Disponible
+      </td>
+      <ng-template #notAvailable>
+        No Disponible
+      </ng-template>
+
+      <td>S/.{{ webcartDetail.snack.price }}</td>
+
+      <td><label><input type="number" value="{{ webcartDetail.quantity }}" min="1" max="{{ webcartDetail.snack.stock }}" step="1"/></label></td>
+
+      <td>S/.{{ this.webcartDetail.quantity * webcartDetail.snack.price }}</td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>

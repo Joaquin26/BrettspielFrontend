@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <label for="startRentDayInput">Fecha inicio de alquiler</label>
+            <input class="form-control" type="date" id="startRentDayInput">
+            <label for="endRentDayInput">Fecha fin de alquiler</label>
+            <input class="form-control" type="date" id="endRentDayInput">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Juegos de Mesa</h2>
+                    <app-webcart-details-boardgame-detail
+                        [webcartDetails]="this.webCart.webCartDetails" [rentDays]="this.rentDays">
+                    </app-webcart-details-boardgame-detail>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Snacks</h2>
+                    <app-webcart-details-snack-detail [webcartDetails]="this.webCart.webCartDetails"></app-webcart-details-snack-detail>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <span class="badge badge-default">Detalle del pedido</span>
+            <br>
+            <span class="badge badge-default">#{{ bill.id }}</span>
+            <br>
+            <span class="badge badge-default">Cantidad de días alquilados: {{ this.rentDays }}</span>
+            <br>
+            <span class="badge badge-default">Precio total de Snacks: S/."SUM(totalPriceSnacks)"</span>
+            <br>
+            <span class="badge badge-default">Precio total de los juegos de mesa: S/."SUM(totalPriceBoardgames)"</span>
+            <br>
+            <button class="btn btn-success" type="button">Precio Total: S/."SUM(totalPriceSnacks)+SUM(totalPriceBoardgames)"</button>
+        </div>
+    </div>
+</div>
