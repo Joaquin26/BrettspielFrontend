@@ -7,7 +7,8 @@ import { BoardgameListComponent } from 'src/app/components/boardgame-list/boardg
 const routes: Routes = [
     { path: '', redirectTo: 'boardgames', pathMatch: 'full' },
     { path: 'boardgame/:id', component: BoardgameComponent },
-    { path: 'boardgames', component: BoardgameListComponent }
+    { path: 'boardgames', component: BoardgameListComponent },
+    { path: 'boardgames/:category', component: BoardgameListComponent }
     // {path:'listar', component:ClientesListaComponent},
     // {path:'nuevo', component:CrearClienteComponent},
     // {path:'detalle', component:ClienteDetalleComponent},

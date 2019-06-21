@@ -16,6 +16,10 @@ export class BoardgameService {
     return this.http.get(`${this.baseURL}`);
   }
 
+  getBoardGameListFilter(category:String,age:Number,minCost:Number,maxCost:Number,minNumberPlayers:Number):Observable<any>{
+    return this.http.get(`${this.baseURL}/filter/${category}/${age}/${minCost}/${maxCost}/${minNumberPlayers}`);
+  }
+
   getBoardGame(id:number):Observable<any>{
     return this.http.get(`${this.baseURL}/${id}`);
   }

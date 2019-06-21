@@ -1,11 +1,70 @@
 <div class="row">
-  <div *ngFor="let boardgame of boardgames" class="col-md-2 " (click)="gotoProductDetailsV2('/boardgame',boardgame.id)">
-    <div class="card text-center " >
-      <img [src]=boardgame.images[0].url class="imag-card card-img-top ">
-      <div class="card-body" >
-        <h5 class="card-title">{{boardgame.name}}</h5>
-        <p class="card-text">Precio por día: S/.{{boardgame.pricePerDay}}</p>
-        <a href="#" class="btn btn-primary" routerlink="boardgame">Alquilar</a>
+  <div class="form-check col-md-2">
+    <label class="" for="">Nº DE JUGADORES</label>
+    <br>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setPlayers(1)" type="radio" name="minPlayers" id="minPlayers1"
+        value="option1" checked>
+      <label class="form-check-label" for="minPlayers1">De 1 a más</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setPlayers(2)" type="radio" name="minPlayers" id="minPlayers2"
+        value="option2">
+      <label class="form-check-label" for="minPlayers2">De 2 a más</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setPlayers(3)" type="radio" name="minPlayers" id="minPlayers3"
+        value="option3">
+      <label class="form-check-label" for="minPlayers3">De 3 a más</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setPlayers(4)" type="radio" name="minPlayers" id="minPlayers4"
+        value="option4">
+      <label class="form-check-label" for="minPlayers4">De 4 a más</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" (click)="setPlayers(5)" type="radio" name="minPlayers" id="minPlayers5"
+        value="option5">
+      <label class="form-check-label" for="minPlayers5">De 5 a más</label>
+    </div>
+    <br>
+    <label class="" for="">EDAD RECOMENDADA</label>
+    <div class="form-check">
+        <input class="form-check-input" (click)="setAge(8)" type="radio" name="minAge" id="minPlayers1"
+          value="option1" checked>
+        <label class="form-check-label" for="minPlayers1">8+</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" (click)="setAge(10)" type="radio" name="minAge" id="minPlayers2"
+          value="option2">
+        <label class="form-check-label" for="minPlayers1">10+</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" (click)="setAge(12)" type="radio" name="minAge" id="minPlayers3"
+          value="option3">
+        <label class="form-check-label" for="minPlayers2">12+</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" (click)="setAge(13)" type="radio" name="minAge" id="minPlayers4"
+          value="option4">
+        <label class="form-check-label" for="minPlayers3">13+</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" (click)="setAge(14)" type="radio" name="minAge" id="minPlayers5"
+          value="option5">
+        <label class="form-check-label" for="minPlayers3">14+</label>
+      </div>
+  </div>
+  <div class="card-deck col-md-10">
+    <div *ngFor="let boardgame of boardgames" class="col-md-2 card"
+      (click)="gotoProductDetailsV2('/boardgame',boardgame.id)">
+      <div class=" text-center ">
+        <img [src]=boardgame.images[0].url class="imag-card card-img-top ">
+        <div class="card-body">
+          <h5 class="card-title">{{boardgame.name}}</h5>
+          <p class="card-text">Precio por día: S/.{{boardgame.pricePerDay}}</p>
+          <a href="#" class="btn btn-primary" routerlink="boardgame">Alquilar</a>
+        </div>
       </div>
     </div>
   </div>

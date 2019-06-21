@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { from } from 'rxjs';
 import { BoardgameListComponent } from './components/boardgame-list/boardgame-list.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { BoardgameListComponent } from './components/boardgame-list/boardgame-li
     AppComponent,
     BoardgameComponent,
     NavBarComponent,
-    BoardgameListComponent
+    BoardgameListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
