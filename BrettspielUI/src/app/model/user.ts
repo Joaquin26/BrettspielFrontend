@@ -1,3 +1,5 @@
+import { Membership } from './MemberShip';
+
 export class User {
     id:Number
     username:String
@@ -5,5 +7,12 @@ export class User {
     name:String
     email:String
     reputation:Number
-    membershipId:Number
+    membership:Membership
+    User()
+    {
+        this.membership=new Membership();
+        this.membership.id=1;
+        this.reputation=0;
+        this.id=null;
+    }
 }

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BoardgameComponent } from './components/boardgame/boardgame.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-
+import { RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +14,7 @@ import { WebcartComponent } from './components/webcart/webcart.component';
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common';
-
+import {UserService} from 'src/app/services/user.service'
 
 @NgModule({
   declarations: [
@@ -27,13 +27,14 @@ import { CommonModule } from '@angular/common';
     LoginComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    BrowserModule,  
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    RouterModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,40 @@
-<p>
-  user works!
-</p>
+<div class="container m-5" style="height: 400px">
+  <div class="row " style="height: 100%">
+    <div class="row align-items-center">
+      <div class="col">
+        <ul class="list-group">
+          <a class="list-group-item" href="javascript:void(0)"
+            style="border:1; color:cadetblue;text-decoration : none">Información Personal</a>
+          <a class="list-group-item" href="javascript:void(0)"
+            style="border:1; color:cadetblue;text-decoration : none">Productos Alquilados</a>
+          <a class="list-group-item" href="javascript:void(0)"
+            style="border:1; color:cadetblue;text-decoration : none">Listas de Juegos</a>
+        </ul>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col">
+        <img class="rounded-circle "
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt-NyiIZiIf5HfEuGMddjVJRHAYSXEXJORhlNcZfW820K-fGHYag"
+          alt="..." style="width:180px; height: 180px">
+      </div>
+      <div class="col">
+        <div class=row>
+          <label for="username">Username : </label>
+          <label id="username" name="username">{{user.username}}</label>
+        </div>
+        <div class=row>
+          <label for="name">Name : </label>
+          <label id="name" name="name">{{user.name}}</label>
+        </div>
+        <div class=row>
+            <label for="name">Email : </label>
+            <label id="name" name="name">{{user.email}}</label>
+        </div>
+        <div class=row>
+            <label for="name">Membership : </label>
+            <label id="name" name="name">{{user.membership.name}}</label>
+        </div>
+      </div>
+    </div>
+  </div>

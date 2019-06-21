@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Category } from 'src/app/model/Category';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
-
+import { Membership } from 'src/app/model/MemberShip';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -10,54 +11,89 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavBarComponent implements OnInit {
 
-  categories:Category[];
-  user:User;
-  @ViewChild('ModalButton',{static: false}) myModal;
-  
+  categories: Category[];
+  user: User;
+  index: Boolean;
+  @ViewChild('ModalButton', { static: false }) myModal;
 
-  constructor(private userService:UserService) { }
+
+  constructor(private userService: UserService,private router:Router ) { this.user = new User(); }
 
   ngOnInit() {
-    this.loadData();
+    this.index = new Boolean();
+    this.index=false;
+    this.userService.currentUser.subscribe(user => this.user = user)
     this.checkSession();
-    this.userService.currentUser.subscribe(user=>this.user=user)
+    
   }
-  checkSession()
-  { 
-    if(localStorage.getItem("session")!=null)
-    {
-      let fakeuser=JSON.parse( localStorage.getItem("session"));
+  checkSession() {
+    if (localStorage.getItem("session") != null) {
+      let fakeuser = JSON.parse(localStorage.getItem("session"));
       this.userService.user.next(fakeuser)
     }
-    else
-    { 
-      let fakeuser=new User();
-      fakeuser.id=-1;
+    else {
+      let fakeuser = new User();
+      fakeuser.id = -1;
+      fakeuser.username="";
       this.userService.user.next(fakeuser)
     }
   }
-  loadData(){
-   
-  }
-  logIn()
-  {
-    this.userService.logIn(this.user.username,this.user.password)
-    .subscribe(data =>{
-       var fakeuser = data; localStorage.setItem("session",JSON.stringify( this.user));
-        if(fakeuser.id !=-1)
-        {
+  logIn() {
+    this.userService.logIn(this.user.username, this.user.password)
+      .subscribe(data => {
+        var fakeuser = data; localStorage.setItem("session", JSON.stringify(fakeuser));
+        if (fakeuser.id != -1) {
           this.userService.user.next(fakeuser)
-          console.log("click")
+          if(!this.index){
           document.getElementById("ModalButton").click();
+          this.index=false;
+          }
         }
-       });
+      });
   }
 
-  logOut()
-  {
+  logOut() {
     localStorage.removeItem("session")
-    let fakeuser=new User();
-    fakeuser.id=-1;
+    let fakeuser = new User();
+    fakeuser.id = -1;
     this.userService.user.next(fakeuser)
+  }
+  signUp() {
+    this.user.id = null;
+    this.user.membership = new Membership()
+    this.user.membership.id = 1
+    this.user.reputation = 0
+    this.userService.register(this.user).subscribe(data => {
+      if (data !== null) {
+        var fakeuser = data;
+        if (fakeuser.id == -2) {
+          var newUser: User = new User();
+          newUser.id = -1;
+          this.userService.user.next(newUser)
+          alert("Ya existe un usuario con ese nombre de usuario")
+
+        } else {
+          if (fakeuser.id == -3) {
+            var newUser: User = new User();
+            newUser.id = -1;
+            this.userService.user.next(newUser)
+            alert("Ya existe un usuario con ese email")
+
+          }
+
+        }
+      }
+      else {
+        this.index=true;
+        document.getElementById("ModalButtonS").click();
+        this.logIn()
+      }
+
+    })
+  }
+
+  Cuenta()
+  {
+    this.router.navigateByUrl('/user/'+this.user.username)
   }
 }
