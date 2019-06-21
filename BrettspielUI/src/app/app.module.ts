@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BoardgameComponent } from './components/boardgame/boardgame.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +12,7 @@ import { WebcartComponent } from './components/webcart/webcart.component';
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common';
+import {UserService} from 'src/app/services/user.service';
 import { WebcartDetailsListComponent } from './components/checkout/webcart-details-list/webcart-details-list.component';
 // tslint:disable-next-line:max-line-length
 import { WebcartDetailsBoardgameDetailComponent } from './components/checkout/webcart-details-boardgame-detail/webcart-details-boardgame-detail.component';
@@ -20,6 +20,7 @@ import { WebcartCheckoutComponent } from './components/checkout/webcart-checkout
 // tslint:disable-next-line:max-line-length
 import { WebcartDetailsSnackDetailComponent } from './components/checkout/webcart-details-snack-detail/webcart-details-snack-detail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -40,12 +41,13 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    RouterModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -26,4 +26,15 @@ export class UserService {
     lg.username=username;
     return this.http.post(`${this.baseURL}/findByCredentials`,lg);
   }
+  register(user):Observable<any>
+  {
+    return this.http.post(`${this.baseURL}`,user);
+  }
+  findByUserName(username):Observable<any>
+  {
+    var us:User=new User();
+    this.currentUser.subscribe(user=>us=us)
+    console.log(us.id)
+    return this.http.get(`${this.baseURL}/findByUsername/${username}`)
+  }
 }
