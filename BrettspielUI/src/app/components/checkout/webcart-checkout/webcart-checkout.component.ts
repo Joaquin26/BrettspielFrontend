@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Bill} from '../../../model/Bill';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
     selector: 'app-webcart-checkout',
@@ -9,8 +11,8 @@ import {Bill} from '../../../model/Bill';
 export class WebcartCheckoutComponent implements OnInit {
 
     bill: Bill;
-
-    constructor() {
+    user:User;
+    constructor(public userService:UserService) {
     }
 
     ngOnInit() {
@@ -18,6 +20,7 @@ export class WebcartCheckoutComponent implements OnInit {
     }
 
     loadData() {
+        this.userService.currentUser.subscribe(user=>this.user=user)
         this.bill = {
             creditCard: {
                 id: 2625,
@@ -35,15 +38,7 @@ export class WebcartCheckoutComponent implements OnInit {
             ruc: 0,
             startRentDay: new Date('2019-02-16'),
             status: '',
-            user: {
-                id: 2,
-                username: 'diego',
-                password: 'diego',
-                name: 'Diego',
-                email: 'diego@gmail.com',
-                reputation: 0,
-                membershipId: 1
-            }
-        };
+            user:this.user
+            };
     }
 }
