@@ -27,4 +27,8 @@ export class BoardgameService {
     return this.http.get(`${this.baseURL}/name/${name}`);
   }
 
+  updateBoardgameById(boardgame: BoardGame): Observable<object> {
+    return this.http.put(`${this.baseURL}`, boardgame);
+  }
+
 }
