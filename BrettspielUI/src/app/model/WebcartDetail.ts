@@ -4,8 +4,8 @@ import {Promotion} from './Promotion';
 
 export class WebcartDetail {
     id: number;
-    snack: Snack;
-    boardGame: BoardGame;
-    promotion: Promotion;
+    snack: Snack = new Snack();
+    boardGame: BoardGame = new BoardGame();
+    promotion: Promotion = new Promotion();
     quantity: number;
 }

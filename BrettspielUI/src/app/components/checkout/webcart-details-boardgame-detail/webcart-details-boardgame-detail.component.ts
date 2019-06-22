@@ -1,21 +1,35 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {WebcartDetail} from '../../../model/WebcartDetail';
 
 @Component({
-  selector: 'app-webcart-details-boardgame-detail',
-  templateUrl: './webcart-details-boardgame-detail.component.html',
-  styleUrls: ['./webcart-details-boardgame-detail.component.css']
+    selector: 'app-webcart-details-boardgame-detail',
+    templateUrl: './webcart-details-boardgame-detail.component.html',
+    styleUrls: ['./webcart-details-boardgame-detail.component.css']
 })
 export class WebcartDetailsBoardgameDetailComponent implements OnInit {
 
-  @Input()
-  webcartDetails: WebcartDetail[];
-  @Input()
-  rentDays: number;
+    @Input()
+    webcartDetails: WebcartDetail[];
+    @Input()
+    rentDays: number;
+    @Output()
+    getTotalGameboardPrice = new EventEmitter();
 
-  constructor() { }
+    totalGameboardPrice = 0;
 
-  ngOnInit() {
-  }
+    constructor() {
+    }
 
+    ngOnInit() {
+    }
+
+    updateTotalGameboardPrice() {
+        this.totalGameboardPrice = 0;
+        for (const webcartDetail of this.webcartDetails) {
+            if (webcartDetail.boardGame != null) {
+                this.totalGameboardPrice += webcartDetail.quantity * webcartDetail.boardGame.pricePerDay * this.rentDays;
+            }
+        }
+        this.getTotalGameboardPrice.emit(this.totalGameboardPrice);
+    }
 }
