@@ -5,17 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class SnackService {
 
-  private baseURL = 'http://localhost:8080/api/category';
-  
+  private baseURL = 'http://localhost:8080/api/snack';
   constructor(private http:HttpClient) { }
 
-  getCategoryList():Observable<any>{
+  getSnackList():Observable<any>{
     return this.http.get(`${this.baseURL}`);
-  }
-
-  getCategory(name:String):Observable<any>{
-    return this.http.get(`${this.baseURL}/name/${name}`);
   }
 }

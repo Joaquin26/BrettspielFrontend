@@ -23,9 +23,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import {RouterModule} from '@angular/router';
 import { WebcartService } from './services/webcart.service';
 import { WebcartDetailService } from './services/webcartDetail.service';
-import { Category } from './model/Category';
 import { CategoryService } from './services/category.service';
 import { BoardgameService } from './services/boardgame.service';
+import { SnackListComponent } from './components/snack-list/snack-list.component';
 
 
 @NgModule({
@@ -42,7 +42,8 @@ import { BoardgameService } from './services/boardgame.service';
     WebcartCheckoutComponent,
     WebcartDetailsSnackDetailComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SnackListComponent
   ],
   imports: [
     BrowserModule,
