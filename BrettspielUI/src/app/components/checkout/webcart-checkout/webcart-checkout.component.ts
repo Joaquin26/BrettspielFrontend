@@ -18,7 +18,7 @@ export class WebcartCheckoutComponent implements OnInit {
     }
 
     loadData() {
-        this.bill = {
+        /*this.bill = {
             creditCard: {
                 id: 2625,
                 name: 'diego',
@@ -42,8 +42,9 @@ export class WebcartCheckoutComponent implements OnInit {
                 name: 'Diego',
                 email: 'diego@gmail.com',
                 reputation: 0,
-                membershipId: 1
+                membershipId: 1,
+                membership: null
             }
-        };
+        };*/
     }
 }

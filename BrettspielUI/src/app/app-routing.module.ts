@@ -5,6 +5,7 @@ import { BoardgameListComponent } from 'src/app/components/boardgame-list/boardg
 import {WebcartComponent} from 'src/app/components/webcart/webcart.component';
 import {WebcartCheckoutComponent} from './components/checkout/webcart-checkout/webcart-checkout.component';
 import {UserComponent } from 'src/app/components/user/user.component';
+import {SnackListComponent} from 'src/app/components/snack-list/snack-list.component'
 
 const routes: Routes = [
     { path: '', redirectTo: 'boardgames', pathMatch: 'full' },
@@ -14,11 +15,9 @@ const routes: Routes = [
     { path: 'customer/:id/webcart', component: WebcartComponent },
     { path: 'checkout', component: WebcartCheckoutComponent},
     { path: 'boardgames', component: BoardgameListComponent },
-    { path: 'user/:username', component: UserComponent }
-    // {path:'listar', component:ClientesListaComponent},
-    // {path:'nuevo', component:CrearClienteComponent},
-    // {path:'detalle', component:ClienteDetalleComponent},
-    // {path:'buscar', component:BuscarClienteComponent}
+    { path: 'user/:username', component: UserComponent },
+    { path: 'snack',component:SnackListComponent}
+ 
 ];
 
 @NgModule({

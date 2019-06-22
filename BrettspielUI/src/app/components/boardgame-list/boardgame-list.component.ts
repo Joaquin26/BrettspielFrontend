@@ -51,7 +51,7 @@ export class BoardgameListComponent implements OnInit {
   }
 
   loadCategory(categoryName: String) {
-    this.categoryService.getCtegory(categoryName)
+    this.categoryService.getCategory(categoryName)
       .subscribe(category => this.category = category);
   }
 
