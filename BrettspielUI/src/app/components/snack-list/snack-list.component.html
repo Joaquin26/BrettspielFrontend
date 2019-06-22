@@ -24,9 +24,8 @@
               <h5 class="card-title">{{snack.name}}</h5>
               <p class="card-text">Contenido: {{snack.sizeValue}}{{snack.siUnits}}</p>
               <p class="card-text">Precio: S/.{{snack.price}}</p>
-              <input type="number" class="input-class col-md-5" value=1 [id]=snack.name>
               <br>
-              <a href="#" class="btn btn-primary" routerlink="boardgame">
+              <a href="javascript:void(0)" class="btn btn-primary" (click)="addSnack(snack)">
                 <i class="fas fa-shopping-cart"></i>
                 Añadir
               </a>

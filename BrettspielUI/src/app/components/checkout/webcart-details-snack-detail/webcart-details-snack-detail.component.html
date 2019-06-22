@@ -35,7 +35,7 @@
             </td>
 
             <td>S/.{{ (webcartDetail.quantity * webcartDetail.snack.price).toFixed(2) }}</td>
-            <td><button type="button" class="btn btn-danger" (click)="deleteWebcartDetailById(webcartDetail.id)">Eliminar</button></td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteWebcartDetailById(webcartDetail.snack.id)">Eliminar</button></td>
         </tr>
     </ng-container>
     </tbody>

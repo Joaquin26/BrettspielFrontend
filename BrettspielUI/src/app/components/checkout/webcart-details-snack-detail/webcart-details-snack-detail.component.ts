@@ -34,7 +34,7 @@ export class WebcartDetailsSnackDetailComponent implements OnInit {
 
     deleteWebcartDetailById(id) {
         for (let i = 0; i < this.webcartDetails.length; i++) {
-            if (this.webcartDetails[i].id === id) {
+            if (this.webcartDetails[i].snack.id === id) {
                 this.webcartDetails.splice(i, 1);
             }
         }

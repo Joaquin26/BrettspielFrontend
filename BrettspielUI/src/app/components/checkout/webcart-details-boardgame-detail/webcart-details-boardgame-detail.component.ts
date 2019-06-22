@@ -38,7 +38,7 @@ export class WebcartDetailsBoardgameDetailComponent implements OnInit {
 
     deleteWebcartDetailById(id) {
         for (let i = 0; i < this.webcartDetails.length; i++) {
-            if (this.webcartDetails[i].id === id) {
+            if (this.webcartDetails[i].boardGame.id === id) {
                 this.webcartDetails.splice(i, 1);
             }
         }
