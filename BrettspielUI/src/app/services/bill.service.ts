@@ -12,7 +12,7 @@ export class BillService {
 
   constructor(private  http: HttpClient) { }
 
-  saveBill(bill: Bill): Observable<object> {
+  saveBill(bill): Observable<object> {
     return this.http.post(`${this.baseURL}`, bill);
   }
 }
