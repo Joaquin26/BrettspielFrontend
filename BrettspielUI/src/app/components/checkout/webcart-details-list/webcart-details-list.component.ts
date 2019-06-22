@@ -1,4 +1,4 @@
-import {Component, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Webcart} from '../../../model/Webcart';
 import {WebcartService} from '../../../services/webcart.service';
 import {User} from '../../../model/user';
@@ -34,20 +34,24 @@ export class WebcartDetailsListComponent implements OnInit {
         this.userService.currentUser
             .subscribe(user => this.user = user);
         this.webcartService.getBoardGameByUserId(this.user.id)
-            .subscribe((webcart => this.webCart = webcart));
-
-        this.loadTotalPrices();
+            .subscribe((webcart => {
+                this.webCart = webcart;
+                this.loadTotalPrices();
+            }));
     }
 
     loadTotalPrices() {
-        // for (const webcartDetail of this.webCart.webCartDetails) {
-        //     if (webcartDetail.snack != null) {
-        //         this.totalSnackPrice += webcartDetail.quantity * webcartDetail.snack.price;
-        //     }
-        //     if (webcartDetail.boardGame != null) {
-        //         this.totalGameboardPrice += webcartDetail.quantity * webcartDetail.boardGame.pricePerDay * this.rentDays;
-        //     }
-        // }
+        this.totalSnackPrice = 0;
+        this.totalGameboardPrice = 0;
+
+        for (const webcartDetail of this.webCart.webCartDetails) {
+            if (webcartDetail.snack != null) {
+                this.totalSnackPrice += webcartDetail.quantity * webcartDetail.snack.price;
+            }
+            if (webcartDetail.boardGame != null) {
+                this.totalGameboardPrice += webcartDetail.quantity * webcartDetail.boardGame.pricePerDay * this.rentDays;
+            }
+        }
     }
 
     getTotalSnackPrice(ev) {
@@ -65,6 +69,8 @@ export class WebcartDetailsListComponent implements OnInit {
 
             const dateDiff = this.endRentDay.getTime() - this.startRentDay.getTime();
             this.rentDays = Math.ceil(dateDiff / (1000 * 3600 * 24));
+
+            this.loadTotalPrices();
         }
     }
 }
