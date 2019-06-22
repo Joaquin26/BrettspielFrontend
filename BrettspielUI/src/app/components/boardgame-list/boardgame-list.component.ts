@@ -21,7 +21,7 @@ export class BoardgameListComponent implements OnInit {
   max: Number;
   minNumberPlayers: Number;
   age: Number;
-  boardGameName:String; 
+  boardGameName: String;
   category: Category;
 
   constructor(private boardgameService: BoardgameService, private categoryService: CategoryService, private router: Router,
@@ -36,6 +36,7 @@ export class BoardgameListComponent implements OnInit {
 
   ngOnInit() {
     let categoryName = this.activatedRoute.snapshot.params.category;
+
     if (categoryName == null)
       this.loadData();
     else {
@@ -52,7 +53,12 @@ export class BoardgameListComponent implements OnInit {
 
   loadCategory(categoryName: String) {
     this.categoryService.getCategory(categoryName)
-      .subscribe(category => this.category = category);
+      .subscribe(category => {
+        this.category = category;
+        if(this.category.id==-1)
+        this.router.navigateByUrl(`/404`);
+      }
+      );
   }
 
   loadFilterData(categoryName: String) {
@@ -60,9 +66,9 @@ export class BoardgameListComponent implements OnInit {
       this.minCost = 0;
     if (this.maxCost == null || this.maxCost > 200 || this.maxCost < this.minCost)
       this.maxCost = 200;
-    if(this.boardGameName==null)
-      this.boardGameName="";
-    this.boardgameService.getBoardGameListFilter(categoryName, this.age, this.minCost, this.maxCost, this.minNumberPlayers,this.boardGameName)
+    if (this.boardGameName == null)
+      this.boardGameName = "";
+    this.boardgameService.getBoardGameListFilter(categoryName, this.age, this.minCost, this.maxCost, this.minNumberPlayers, this.boardGameName)
       .subscribe(boardgames => this.boardgames = boardgames);
   }
 
@@ -76,7 +82,7 @@ export class BoardgameListComponent implements OnInit {
     this.switchLoadData();
   }
 
-  public switchLoadData(){
+  public switchLoadData() {
     if (this.category != null)
       this.loadFilterData(this.category.name);
     else
