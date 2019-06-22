@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Membership } from 'src/app/model/MemberShip';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
+import { WebcartService } from 'src/app/services/webcart.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class NavBarComponent implements OnInit {
   @ViewChild('ModalButton', { static: false }) myModal;
 
 
-  constructor(private userService: UserService, private categoryService: CategoryService,private router: Router) { }
+  constructor(private userService: UserService, private categoryService: CategoryService,private router: Router,private webcartService:WebcartService) { }
 
   ngOnInit() {
     this.index = new Boolean();
@@ -34,12 +35,14 @@ export class NavBarComponent implements OnInit {
     if (localStorage.getItem("session") != null) {
       let fakeuser = JSON.parse(localStorage.getItem("session"));
       this.userService.user.next(fakeuser)
+      this.webcartService.assignWebcart(this.user.id)
     }
     else {
       let fakeuser = new User();
       fakeuser.id = -1;
       fakeuser.username="";
       this.userService.user.next(fakeuser)
+      this.webcartService.assignWebcart(this.user.id)
     }
   }
   loadData() {
@@ -56,6 +59,7 @@ export class NavBarComponent implements OnInit {
           document.getElementById("ModalButton").click();
           this.index=false;
           }
+          this.webcartService.assignWebcart(this.user.id)
         }
       });
   }

@@ -21,6 +21,11 @@ import { WebcartCheckoutComponent } from './components/checkout/webcart-checkout
 import { WebcartDetailsSnackDetailComponent } from './components/checkout/webcart-details-snack-detail/webcart-details-snack-detail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {RouterModule} from '@angular/router';
+import { WebcartService } from './services/webcart.service';
+import { WebcartDetailService } from './services/webcartDetail.service';
+import { Category } from './model/Category';
+import { CategoryService } from './services/category.service';
+import { BoardgameService } from './services/boardgame.service';
 
 
 @NgModule({
@@ -47,7 +52,7 @@ import {RouterModule} from '@angular/router';
     RouterModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService,WebcartService,WebcartDetailService,CategoryService,BoardgameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
