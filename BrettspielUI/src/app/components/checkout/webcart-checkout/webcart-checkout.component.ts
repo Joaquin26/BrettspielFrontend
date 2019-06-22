@@ -7,9 +7,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class WebcartCheckoutComponent implements OnInit {
 
+    startRentDay: Date;
+    endRentDay: Date;
+
     constructor() {
     }
 
     ngOnInit() {
+    }
+
+    getStartRentDay(ev) {
+        this.startRentDay = ev;
+    }
+
+    getEndRentDay(ev) {
+        this.endRentDay = ev;
     }
 }

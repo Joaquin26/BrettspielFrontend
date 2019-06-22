@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="#">
-      <i class="fas fa-chess-rook"></i>
+    <i class="fas fa-chess-rook"></i>
     Brettspiel</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +18,8 @@
           Juegos de mesa
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a *ngFor="let category of categories" class="dropdown-item"  [href]="" (click)="goToCategory(category.name)">{{category.name}}</a>
+          <a *ngFor="let category of categories" class="dropdown-item" [href]=""
+            (click)="goToCategory(category.name)">{{category.name}}</a>
           <!-- 
             <a class="dropdown-item" href="#">Something else here</a> -->
         </div>
@@ -45,14 +46,15 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item " href="javascript:void(0)" aria-disabled="false" style="color: green"
               (click)="logOut()" style="color:red">LogOut</a>
-            <a class="dropdown-item " href="javascript:void(0)" aria-disabled="false" style="color:blue"   (click)="Cuenta()">Mi cuenta</a>
+            <a class="dropdown-item " href="javascript:void(0)" aria-disabled="false" style="color:blue"
+              (click)="Cuenta()">Mi cuenta</a>
           </div>
         </li>
       </div>
     </ul>
     <ul class="navbar-nav justify-content-center">
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Carrito</a>
+        <a class="nav-link" href="javascript:void(0)" tabindex="-1" aria-disabled="true" (click)="CheckOut()">Carrito</a>
       </li>
       <li>
         <form class="form-inline my-2 my-lg-0">

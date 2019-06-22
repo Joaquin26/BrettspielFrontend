@@ -32,4 +32,14 @@ export class WebcartDetailsBoardgameDetailComponent implements OnInit {
         }
         this.getTotalGameboardPrice.emit(this.totalGameboardPrice);
     }
+
+    deleteWebcartDetailById(id) {
+        for (let i = 0; i < this.webcartDetails.length; i++) {
+            if (this.webcartDetails[i].id === id) {
+                this.webcartDetails.splice(i, 1);
+            }
+        }
+
+        this.updateTotalGameboardPrice();
+    }
 }

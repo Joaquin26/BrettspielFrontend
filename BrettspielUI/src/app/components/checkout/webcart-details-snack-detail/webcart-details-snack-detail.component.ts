@@ -31,4 +31,14 @@ export class WebcartDetailsSnackDetailComponent implements OnInit {
         }
         this.getTotalSnackPrice.emit(this.totalSnackPrice);
     }
+
+    deleteWebcartDetailById(id) {
+        for (let i = 0; i < this.webcartDetails.length; i++) {
+            if (this.webcartDetails[i].id === id) {
+                this.webcartDetails.splice(i, 1);
+            }
+        }
+
+        this.updateTotalSnackPrice();
+    }
 }

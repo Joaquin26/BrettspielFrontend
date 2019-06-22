@@ -3,5 +3,5 @@ export class CreditCard {
     name: string;
     number: number;
     cvv: number;
-    expiration: Date;
+    expiration: string;
 }

@@ -21,7 +21,15 @@ import { WebcartCheckoutComponent } from './components/checkout/webcart-checkout
 import { WebcartDetailsSnackDetailComponent } from './components/checkout/webcart-details-snack-detail/webcart-details-snack-detail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {RouterModule} from '@angular/router';
+import { WebcartService } from './services/webcart.service';
+import { WebcartDetailService } from './services/webcartDetail.service';
+import { CategoryService } from './services/category.service';
+import { BoardgameService } from './services/boardgame.service';
 import { SnackListComponent } from './components/snack-list/snack-list.component';
+import { PlayListComponent } from './components/play-list/play-list.component';
+import { PlayListDetailComponent } from './components/play-list-detail/play-list-detail.component';
+import { PlayListListComponent } from './components/play-list-list/play-list-list.component';
+import { PaymentComponent } from './components/checkout/payment/payment.component';
 
 
 @NgModule({
@@ -39,7 +47,11 @@ import { SnackListComponent } from './components/snack-list/snack-list.component
     WebcartDetailsSnackDetailComponent,
     LoginComponent,
     NotFoundComponent,
-    SnackListComponent
+    SnackListComponent,
+    PlayListComponent,
+    PlayListDetailComponent,
+    PlayListListComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +61,7 @@ import { SnackListComponent } from './components/snack-list/snack-list.component
     RouterModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService,WebcartService,WebcartDetailService,CategoryService,BoardgameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

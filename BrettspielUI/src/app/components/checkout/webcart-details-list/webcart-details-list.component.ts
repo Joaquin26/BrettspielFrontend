@@ -1,4 +1,4 @@
-import {Component, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Webcart} from '../../../model/Webcart';
 import {WebcartService} from '../../../services/webcart.service';
 import {User} from '../../../model/user';
@@ -17,6 +17,11 @@ export class WebcartDetailsListComponent implements OnInit {
     endRentDay: Date;
     rentDays: number;
 
+    @Output()
+    getStartRentDay = new EventEmitter<Date>();
+    @Output()
+    getEndRentDay = new EventEmitter<Date>();
+
     totalSnackPrice = 0;
     totalGameboardPrice = 0;
 
@@ -33,21 +38,29 @@ export class WebcartDetailsListComponent implements OnInit {
     loadData() {
         this.userService.currentUser
             .subscribe(user => this.user = user);
-        this.webcartService.getBoardGameByUserId(this.user.id)
-            .subscribe((webcart => this.webCart = webcart));
-
-        this.loadTotalPrices();
+<<<<<<< HEAD
+        this.webcartService.currentWebcart
+=======
+        this.webcartService.getWebcartByUserId(this.user.id)
+>>>>>>> 8e14acd3c4688694328eb7185ed5fac625626a81
+            .subscribe((webcart => {
+                this.webCart = webcart;
+                this.loadTotalPrices();
+            }));
     }
 
     loadTotalPrices() {
-        // for (const webcartDetail of this.webCart.webCartDetails) {
-        //     if (webcartDetail.snack != null) {
-        //         this.totalSnackPrice += webcartDetail.quantity * webcartDetail.snack.price;
-        //     }
-        //     if (webcartDetail.boardGame != null) {
-        //         this.totalGameboardPrice += webcartDetail.quantity * webcartDetail.boardGame.pricePerDay * this.rentDays;
-        //     }
-        // }
+        this.totalSnackPrice = 0;
+        this.totalGameboardPrice = 0;
+
+        for (const webcartDetail of this.webCart.webCartDetails) {
+            if (webcartDetail.snack != null) {
+                this.totalSnackPrice += webcartDetail.quantity * webcartDetail.snack.price;
+            }
+            if (webcartDetail.boardGame != null) {
+                this.totalGameboardPrice += webcartDetail.quantity * webcartDetail.boardGame.pricePerDay * this.rentDays;
+            }
+        }
     }
 
     getTotalSnackPrice(ev) {
@@ -65,6 +78,10 @@ export class WebcartDetailsListComponent implements OnInit {
 
             const dateDiff = this.endRentDay.getTime() - this.startRentDay.getTime();
             this.rentDays = Math.ceil(dateDiff / (1000 * 3600 * 24));
+
+            this.loadTotalPrices();
+            this.getStartRentDay.emit(this.startRentDay);
+            this.getEndRentDay.emit(this.endRentDay);
         }
     }
 }

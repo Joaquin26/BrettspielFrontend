@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { CategoryService } from 'src/app/services/category.service';
 import { Category } from 'src/app/model/Category';
+import { Webcart } from 'src/app/model/Webcart';
+import { WebcartService } from 'src/app/services/webcart.service';
 
 
 @Component({
@@ -32,9 +34,11 @@ export class BoardgameListComponent implements OnInit {
     this.maxCost = 200;
     this.minNumberPlayers = 1;
     this.age = 8;
+   
   }
-
+ 
   ngOnInit() {
+   
     let categoryName = this.activatedRoute.snapshot.params.category;
 
     if (categoryName == null)
