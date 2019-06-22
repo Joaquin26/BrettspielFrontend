@@ -29,6 +29,7 @@ import { SnackListComponent } from './components/snack-list/snack-list.component
 import { PlayListComponent } from './components/play-list/play-list.component';
 import { PlayListDetailComponent } from './components/play-list-detail/play-list-detail.component';
 import { PlayListListComponent } from './components/play-list-list/play-list-list.component';
+import { PaymentComponent } from './components/checkout/payment/payment.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { PlayListListComponent } from './components/play-list-list/play-list-lis
     SnackListComponent,
     PlayListComponent,
     PlayListDetailComponent,
-    PlayListListComponent
+    PlayListListComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

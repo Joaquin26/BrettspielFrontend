@@ -18,7 +18,7 @@ export class BoardgameComponent implements OnInit {
 
   boardgame: BoardGame;
   name:String;
-  cant:Number;
+  cant:number;
   webcart:Webcart;
   constructor(private boardgameService: BoardgameService,private webcartService:WebcartService,private webcartDetailService:WebcartDetailService, private activatedRoute: ActivatedRoute,private router: Router) {
     this.cant=1;
@@ -48,11 +48,23 @@ export class BoardgameComponent implements OnInit {
     }
   addBoardGame()
   {
+    this.webcartService.currentWebcart.subscribe(webcart=>this.webcart=webcart)
     var wbd:WebcartDetail=new WebcartDetail();
     wbd.boardGame=this.boardgame;
     wbd.quantity=this.cant;
-  
-    this.webcart.webCartDetails.push(wbd)
-    this.webcartService.webcart.next(this.webcart);
+    var fakewb:Webcart=new Webcart()
+    fakewb.id=this.webcart.id;
+    wbd.webCart=fakewb;
+    var webcart:Webcart=JSON.parse(localStorage.getItem("carrito"));
+    webcart.webCartDetails.push(wbd)
+    localStorage.removeItem("carrito")
+    localStorage.setItem("carrito",JSON.stringify(webcart))
+    this.webcartService.webcart.next(webcart)
+  }
+  guardar()
+  {
+    var webcart:Webcart;
+    this.webcartService.currentWebcart.subscribe(data=>webcart=data)
+    localStorage.setItem("carrito",JSON.stringify(webcart))
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Category } from 'src/app/model/Category';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
@@ -6,6 +6,9 @@ import { Membership } from 'src/app/model/MemberShip';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { WebcartService } from 'src/app/services/webcart.service';
+import { Subscription } from 'rxjs';
+import { Webcart } from 'src/app/model/Webcart';
+import { WebcartDetailService } from 'src/app/services/webcartDetail.service';
 
 
 @Component({
@@ -13,17 +16,19 @@ import { WebcartService } from 'src/app/services/webcart.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit,OnDestroy {
   
   index:Boolean
   categories: Category[];
   user: User;
+  subscription: Subscription;
   @ViewChild('ModalButton', { static: false }) myModal;
 
 
-  constructor(private userService: UserService, private categoryService: CategoryService,private router: Router,private webcartService:WebcartService) { }
+  constructor(private userService: UserService, private categoryService: CategoryService,private router: Router,private webcartService:WebcartService,private webcartDetailService:WebcartDetailService) { }
 
   ngOnInit() {
+    
     this.index = new Boolean();
     this.index=false;
     this.userService.currentUser.subscribe(user => this.user = user)
@@ -39,6 +44,7 @@ export class NavBarComponent implements OnInit {
     }
     else {
       let fakeuser = new User();
+
       fakeuser.id = -1;
       fakeuser.username="";
       this.userService.user.next(fakeuser)
@@ -65,11 +71,16 @@ export class NavBarComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.removeItem("session")
+
+    var webcart:Webcart;
+    webcart=JSON.parse( localStorage.getItem("carrito"))
+    this.webcartDetailService.save(webcart);
     let fakeuser = new User();
     fakeuser.id = -1;
     this.userService.user.next(fakeuser)
     this.router.navigateByUrl('/')
+    localStorage.removeItem("session")
+    localStorage.removeItem("carrito")
   }
   signUp() {
     this.user.id = null;
@@ -112,5 +123,15 @@ export class NavBarComponent implements OnInit {
   goToCategory(name){
     var myurl = `boardgames/${name}`;
     this.router.navigateByUrl(myurl);
+  }
+  ngOnDestroy()
+  {
+    var webcart:Webcart;
+    this.webcartService.currentWebcart.subscribe(data=>webcart=data)
+    localStorage.setItem("carrito",JSON.stringify(webcart))
+  }
+  CheckOut()
+  {
+    this.router.navigateByUrl('checkout')
   }
 }

@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <form role="form">
+                <h2>Pago</h2>
+                <p>Completas los siguientes campos para realizar el alquiler</p>
+
+                <div class="form-group">
+                    <label for="nameInput">Nombre (tarjeta de crédito)</label>
+                    <input class="form-control" id="nameInput"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="creditCardInput">Numero de tarjeta de crédito</label>
+                    <input class="form-control" id="creditCardInput"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="expirationdateInput">Fecha de expiración</label>
+                    <input class="form-control" id="expirationdateInput"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="cvvInput">CVV</label>
+                    <input class="form-control" id="cvvInput"/>
+                </div>
+
+                <button class="btn btn-primary" data-target="#paymentModal" data-toggle="modal" type="submit">Alquilar
+                </button>
+            </form>
+        </div>
+    </div>
+    <div aria-hidden="true" aria-labelledby="paymentModalLabel" class="modal fade" id="paymentModal" role="dialog"
+         tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Confirmar pago</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">¿Esta seguro que desea confirmar el pago del alquiler?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancelar</button>
+                    <button class="btn btn-primary" type="button">Proceder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

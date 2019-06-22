@@ -23,23 +23,37 @@ export class WebcartService {
   assignWebcart(userId)
   {
       if(userId !=-1){
+
         var  webcart:Webcart=new Webcart();
-        var tmpwebcart:Webcart=new Webcart();
-        this.currentWebcart.subscribe(data=>tmpwebcart=data);
-      this.getWebcartByUserId(userId).subscribe(data=>webcart=data)
-        tmpwebcart.id=webcart.id;
-        webcart=tmpwebcart;
-      this.webcart.next(webcart)
+
+      this.getWebcartByUserId(userId).subscribe(data=>{webcart=data;
+        if(webcart.webCartDetails==null){
+          webcart.webCartDetails=new Array();
+          }
+        localStorage.setItem("carrito",JSON.stringify(webcart));
+        this.webcart.next(webcart)
+      })
+       
+ 
       }
       else
       {
-        console.log("entre")
-        var  webcart:Webcart=new Webcart()
-        webcart.id=-1;
-        webcart.createdDate=Date.now().toLocaleString();
-        webcart.status="Abierto"
-        webcart.webCartDetails=new Array();
-        this.webcart.next(webcart)
+        if (localStorage.getItem("carrito") != null)
+        {
+          var  webcart:Webcart=JSON.parse( localStorage.getItem("carrito"))
+          this.webcart.next(webcart)
+        }
+        else
+        {
+          var  webcart:Webcart=new Webcart()
+          webcart.id=-1;
+          webcart.createdDate=Date.now().toLocaleString();
+          webcart.status="Abierto"
+          webcart.webCartDetails=new Array();
+          this.webcart.next(webcart)
+           localStorage.setItem("carrito",JSON.stringify(webcart))
+        }
+
       }
   }
 
