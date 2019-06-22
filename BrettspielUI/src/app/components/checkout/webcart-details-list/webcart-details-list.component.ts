@@ -24,7 +24,7 @@ export class WebcartDetailsListComponent implements OnInit {
   loadData() {
     const dateDiff = this.bill.endRentDay.getTime() - this.bill.startRentDay.getTime();
     this.rentDays = Math.ceil(dateDiff / (1000 * 3600 * 24));
-    this.webcartService.getBoardGameByUserId(this.bill.user.id)
+    this.webcartService.getWebcartByUserId(this.bill.user.id)
         .subscribe((webcart => this.webCart = webcart));
   }
 }

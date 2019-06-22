@@ -26,6 +26,9 @@ import { WebcartDetailService } from './services/webcartDetail.service';
 import { CategoryService } from './services/category.service';
 import { BoardgameService } from './services/boardgame.service';
 import { SnackListComponent } from './components/snack-list/snack-list.component';
+import { PlayListComponent } from './components/play-list/play-list.component';
+import { PlayListDetailComponent } from './components/play-list-detail/play-list-detail.component';
+import { PlayListListComponent } from './components/play-list-list/play-list-list.component';
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import { SnackListComponent } from './components/snack-list/snack-list.component
     WebcartDetailsSnackDetailComponent,
     LoginComponent,
     NotFoundComponent,
-    SnackListComponent
+    SnackListComponent,
+    PlayListComponent,
+    PlayListDetailComponent,
+    PlayListListComponent
   ],
   imports: [
     BrowserModule,

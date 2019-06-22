@@ -4,37 +4,44 @@
       <div class="col">
         <ul class="list-group">
           <a class="list-group-item" href="javascript:void(0)"
-            style="border:1; color:cadetblue;text-decoration : none">Información Personal</a>
+            style="border:1; color:cadetblue;text-decoration : none" (click)="changeIndex(1)">Información Personal</a>
           <a class="list-group-item" href="javascript:void(0)"
-            style="border:1; color:cadetblue;text-decoration : none">Productos Alquilados</a>
+            style="border:1; color:rgb(27, 42, 42);text-decoration : none" (click)="changeIndex(2)">Productos Alquilados</a>
           <a class="list-group-item" href="javascript:void(0)"
-            style="border:1; color:cadetblue;text-decoration : none">Listas de Juegos</a>
+            style="border:1; color:cadetblue;text-decoration : none" (click)="changeIndex(3)">Listas de Juegos</a>
         </ul>
       </div>
     </div>
-    <div class="row ">
-      <div class="col">
-        <img class="rounded-circle "
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt-NyiIZiIf5HfEuGMddjVJRHAYSXEXJORhlNcZfW820K-fGHYag"
-          alt="..." style="width:180px; height: 180px">
-      </div>
-      <div class="col">
-        <div class=row>
-          <label for="username">Username : </label>
-          <label id="username" name="username">{{user.username}}</label>
+    <div *ngIf="index==1">
+      <div class="row ">
+        <div class="col">
+          <img class="rounded-circle "
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt-NyiIZiIf5HfEuGMddjVJRHAYSXEXJORhlNcZfW820K-fGHYag"
+            alt="..." style="width:180px; height: 180px">
         </div>
-        <div class=row>
-          <label for="name">Name : </label>
-          <label id="name" name="name">{{user.name}}</label>
-        </div>
-        <div class=row>
-            <label for="name">Email : </label>
-            <label id="name" name="name">{{user.email}}</label>
-        </div>
-        <div class=row>
-            <label for="name">Membership : </label>
-            <label id="name" name="name">{{user.membership.name}}</label>
+        <div class="col">
+          <div class=row>
+            <label for="username">Username : </label>
+            <label id="username" name="username">{{user.username}}</label>
+          </div>
+          <div class=row>
+            <label for="name">Name : </label>
+            <label id="name" name="name">{{user.name}}</label>
+          </div>
+          <div class=row>
+            <label for="email">Email : </label>
+            <label id="email" name="email">{{user.email}}</label>
+          </div>
+          <div class=row>
+            <label for="membership">Membership : </label>
+            <label id="membership" name="membership">{{user.membership.name}}</label>
+          </div>
         </div>
       </div>
     </div>
+    <div *ngIf="index==3">     
+      <app-play-list-list [playLists]='playLists'></app-play-list-list>
+      <router-outlet></router-outlet>
+    </div>
+
   </div>

@@ -11,6 +11,9 @@ export class User {
     membership: Membership;
     User() {
         this.membership = new Membership();
+        this.email="";
+        this.name="";
+        this.membership.name="";    
         this.membership.id = 1;
         this.reputation = 0;
         this.id = null;

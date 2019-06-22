@@ -17,7 +17,7 @@ export class WebcartService {
     return this.http.get(`${this.baseURL}/${webcartId}`);
   }
 
-  public getBoardGameByUserId(userId: number): Observable<any> {
+  public getWebcartByUserId(userId: number): Observable<any> {
     return this.http.get(`${this.baseURL}/findWebcartByUserId/${userId}`);
   }
   assignWebcart(userId)
@@ -26,13 +26,14 @@ export class WebcartService {
         var  webcart:Webcart=new Webcart();
         var tmpwebcart:Webcart=new Webcart();
         this.currentWebcart.subscribe(data=>tmpwebcart=data);
-      this.getBoardGameByUserId(userId).subscribe(data=>webcart=data)
+      this.getWebcartByUserId(userId).subscribe(data=>webcart=data)
         tmpwebcart.id=webcart.id;
         webcart=tmpwebcart;
       this.webcart.next(webcart)
       }
       else
       {
+        console.log("entre")
         var  webcart:Webcart=new Webcart()
         webcart.id=-1;
         webcart.createdDate=Date.now().toLocaleString();

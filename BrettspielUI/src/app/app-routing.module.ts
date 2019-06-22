@@ -7,6 +7,7 @@ import {WebcartCheckoutComponent} from './components/checkout/webcart-checkout/w
 import {UserComponent } from 'src/app/components/user/user.component';
 import {SnackListComponent} from 'src/app/components/snack-list/snack-list.component'
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PlayListListComponent } from './components/play-list-list/play-list-list.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'boardgames', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'user/:username', component: UserComponent },
     { path: 'snack',component:SnackListComponent},
     { path: '404', component:NotFoundComponent},
+    { path: 'playListList', component:PlayListListComponent},
     { path: '**', component:NotFoundComponent}
  
 ];

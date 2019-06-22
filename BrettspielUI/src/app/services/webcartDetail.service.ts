@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class WebcartDetailService{
 
-  private baseURL = 'http://localhost:8080/api/webcart';
+  private baseURL = 'http://localhost:8080/api/webcartdetail';
   constructor(private http: HttpClient) { }
 
   public addBoardgameTo(webcartId: number): Observable<any> {

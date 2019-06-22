@@ -51,7 +51,7 @@ export class BoardgameComponent implements OnInit {
     var wbd:WebcartDetail=new WebcartDetail();
     wbd.boardGame=this.boardgame;
     wbd.quantity=this.cant;
-    
+  
     this.webcart.webCartDetails.push(wbd)
     this.webcartService.webcart.next(this.webcart);
   }
