@@ -11,6 +11,7 @@ import { PlayListListComponent } from './components/play-list-list/play-list-lis
 
 const routes: Routes = [
     { path: '', redirectTo: 'boardgames', pathMatch: 'full' },
+    { path: 'home', component: BoardgameListComponent },
     { path: 'boardgame/:name', component: BoardgameComponent },
     { path: 'boardgames', component: BoardgameListComponent },
     { path: 'boardgames/:category', component: BoardgameListComponent },

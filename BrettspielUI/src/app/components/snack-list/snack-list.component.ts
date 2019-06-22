@@ -13,33 +13,39 @@ import { WebcartDetail } from 'src/app/model/WebcartDetail';
 })
 export class SnackListComponent implements OnInit {
 
-  snacks:Snack[];
-  webcart:Webcart;
-  constructor(private snackService:SnackService,private webcartService:WebcartService,
-    private webcartDetailService:WebcartDetailService) { }
+  snacks: Snack[];
+  webcart: Webcart;
+  constructor(private snackService: SnackService, private webcartService: WebcartService,
+    private webcartDetailService: WebcartDetailService) { }
 
   ngOnInit() {
     this.loadData();
   }
-  loadData(){
-    this.snackService.getSnackList().subscribe(snacks=> this.snacks=snacks);
+  loadData() {
+    this.snackService.getSnackList().subscribe(snacks => this.snacks = snacks);
     // this.snackService.getSnackList()
     //   .subscribe(snacks => this.snacks = snacks);
   }
-  addSnack(snack:Snack){
-    
-     this.webcartService.currentWebcart.subscribe(webcart=>this.webcart=webcart)
-     var wbd:WebcartDetail=new WebcartDetail();
-     wbd.snack=snack;
-     wbd.quantity=1;
-     var fakewb:Webcart=new Webcart()
-     fakewb.id=this.webcart.id;
-     wbd.webCart=fakewb;
-     var webcart:Webcart=JSON.parse(localStorage.getItem("carrito"));
-     webcart.webCartDetails.push(wbd)
-     localStorage.removeItem("carrito")
-     localStorage.setItem("carrito",JSON.stringify(webcart))
-     this.webcartService.webcart.next(webcart)
+  addSnack(snack: Snack) {
+    var found = false;
+    this.webcartService.currentWebcart.subscribe(webcart => this.webcart = webcart)
+    for (let i = 0; i < this.webcart.webCartDetails.length; i++) {
+      if (this.webcart.webCartDetails[i].snack != null && this.webcart.webCartDetails[i].snack.id === snack.id)
+        found = true;
+    }
+    if (found == false) {
+      console.log("se agrego");
+      var wbd: WebcartDetail = new WebcartDetail();
+      wbd.snack = snack;
+      wbd.quantity = 1;
+      var fakewb: Webcart = new Webcart()
+      fakewb.id = this.webcart.id;
+      wbd.webCart = fakewb;
+      var webcart: Webcart = JSON.parse(localStorage.getItem("carrito"));
+      webcart.webCartDetails.push(wbd)
+      localStorage.removeItem("carrito")
+      localStorage.setItem("carrito", JSON.stringify(webcart))
+      this.webcartService.webcart.next(webcart);
+    }
   }
-
 }
