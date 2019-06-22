@@ -38,11 +38,7 @@ export class WebcartDetailsListComponent implements OnInit {
     loadData() {
         this.userService.currentUser
             .subscribe(user => this.user = user);
-<<<<<<< HEAD
         this.webcartService.currentWebcart
-=======
-        this.webcartService.getWebcartByUserId(this.user.id)
->>>>>>> 8e14acd3c4688694328eb7185ed5fac625626a81
             .subscribe((webcart => {
                 this.webCart = webcart;
                 this.loadTotalPrices();
