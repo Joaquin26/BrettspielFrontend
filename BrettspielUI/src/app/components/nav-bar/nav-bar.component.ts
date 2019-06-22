@@ -136,4 +136,12 @@ export class NavBarComponent implements OnInit,OnDestroy {
     this.webcartService.webcart.next(fakewc)
     this.router.navigateByUrl('checkout')
   }
+  SaveWebcart()
+  {
+    var fakewc:Webcart=JSON.parse(localStorage.getItem("carrito"));
+    this.webcartService.webcart.next(fakewc)
+    var webcart:Webcart;
+    webcart=JSON.parse( localStorage.getItem("carrito"))
+    this.webcartDetailService.save(webcart);
+  }
 }
