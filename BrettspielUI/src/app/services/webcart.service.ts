@@ -13,7 +13,7 @@ export class WebcartService {
     return this.http.get(`${this.baseURL}/${webcartId}`);
   }
 
-  public getBoardGameByUserId(userId: number): Observable<any> {
+  public getWebcartByUserId(userId: number): Observable<any> {
     return this.http.get(`${this.baseURL}/findWebcartByUserId/${userId}`);
   }
 }

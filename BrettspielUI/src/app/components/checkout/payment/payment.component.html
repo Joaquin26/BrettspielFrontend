@@ -1,3 +1,43 @@
+<!--<form (ngSubmit)="registrarCliente()">-->
+<!--    <div class="form-group col-md-6">-->
+<!--        <label for="nombres">Nombres :</label>-->
+<!--        <input type="text" class="form-control" id="nombres" name="nombres"-->
+<!--               placeholder="Ingrese sus nombres" required [(ngModel)]="cliente.nombres">-->
+<!--    </div>-->
+<!--    <div class="form-group col-md-6">-->
+<!--        <label for="apellidos">Apellidos :</label>-->
+<!--        <input type="text" class="form-control" id="apellidos"-->
+<!--               name="apellidos" placeholder="Ingrese sus apellidos"-->
+<!--               required [(ngModel)]="cliente.apellidos">-->
+<!--    </div>-->
+<!--    <div class="form-group col-md-6">-->
+<!--        <label for="dni">DNI :</label>-->
+<!--        <input type="text" class="form-control" id="dni"-->
+<!--               name="dni" placeholder="Ingrese su dni"-->
+<!--               required [(ngModel)]="cliente.dni">-->
+<!--    </div>-->
+<!--    <div class="form-group col-md-6">-->
+<!--        <label for="direccion">Dirección :</label>-->
+<!--        <input type="text" class="form-control" id="direccion"-->
+<!--               name="direccion" placeholder="Ingrese su dirección"-->
+<!--               required [(ngModel)]="cliente.direccion">-->
+<!--    </div>-->
+<!--    <div class="form-group col-md-6">-->
+<!--        <label for="telefono">Teléfono :</label>-->
+<!--        <input type="text" class="form-control" id="telefono"-->
+<!--               name="telefono" placeholder="Ingrese su telefono"-->
+<!--               required [(ngModel)]="cliente.telefono">-->
+<!--    </div>-->
+<!--    <div class="form-group col-md-6">-->
+<!--        <label for="email">Email :</label>-->
+<!--        <input type="text" class="form-control" id="email"-->
+<!--               name="email" placeholder="Ingrese su email"-->
+<!--               required [(ngModel)]="cliente.email">-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-success">Guardar</button>-->
+<!--</form>-->
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -7,22 +47,22 @@
 
                 <div class="form-group">
                     <label for="nameInput">Nombre (tarjeta de crédito)</label>
-                    <input class="form-control" id="nameInput"/>
+                    <input class="form-control" id="nameInput" [(ngModel)]="creditcard.name" [ngModelOptions]="{standalone: true}"/>
                 </div>
 
                 <div class="form-group">
                     <label for="creditCardInput">Numero de tarjeta de crédito</label>
-                    <input class="form-control" id="creditCardInput"/>
+                    <input class="form-control" id="creditCardInput" [(ngModel)]="creditcard.number" [ngModelOptions]="{standalone: true}"/>
                 </div>
 
                 <div class="form-group">
                     <label for="expirationdateInput">Fecha de expiración</label>
-                    <input class="form-control" id="expirationdateInput"/>
+                    <input class="form-control" id="expirationdateInput" [(ngModel)]="creditcard.expiration" [ngModelOptions]="{standalone: true}"/>
                 </div>
 
                 <div class="form-group">
                     <label for="cvvInput">CVV</label>
-                    <input class="form-control" id="cvvInput"/>
+                    <input class="form-control" id="cvvInput" [(ngModel)]="creditcard.cvv" [ngModelOptions]="{standalone: true}"/>
                 </div>
 
                 <button class="btn btn-primary" data-target="#paymentModal" data-toggle="modal" type="submit">Alquilar
@@ -43,7 +83,7 @@
                 <div class="modal-body">¿Esta seguro que desea confirmar el pago del alquiler?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancelar</button>
-                    <button class="btn btn-primary" type="button">Proceder</button>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button" (click)="saveCreditcard()">Proceder</button>
                 </div>
             </div>
         </div>

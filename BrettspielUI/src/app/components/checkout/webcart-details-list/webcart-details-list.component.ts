@@ -33,7 +33,7 @@ export class WebcartDetailsListComponent implements OnInit {
     loadData() {
         this.userService.currentUser
             .subscribe(user => this.user = user);
-        this.webcartService.getBoardGameByUserId(this.user.id)
+        this.webcartService.getWebcartByUserId(this.user.id)
             .subscribe((webcart => {
                 this.webCart = webcart;
                 this.loadTotalPrices();
