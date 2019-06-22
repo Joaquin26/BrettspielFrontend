@@ -21,6 +21,7 @@ import { WebcartCheckoutComponent } from './components/checkout/webcart-checkout
 import { WebcartDetailsSnackDetailComponent } from './components/checkout/webcart-details-snack-detail/webcart-details-snack-detail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {RouterModule} from '@angular/router';
+import { SnackListComponent } from './components/snack-list/snack-list.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {RouterModule} from '@angular/router';
     WebcartCheckoutComponent,
     WebcartDetailsSnackDetailComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SnackListComponent
   ],
   imports: [
     BrowserModule,

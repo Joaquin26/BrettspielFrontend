@@ -65,6 +65,7 @@ export class NavBarComponent implements OnInit {
     let fakeuser = new User();
     fakeuser.id = -1;
     this.userService.user.next(fakeuser)
+    this.router.navigateByUrl('/')
   }
   signUp() {
     this.user.id = null;

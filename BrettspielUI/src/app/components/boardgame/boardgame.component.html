@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-3 text-center">
     <img [src]=boardgame.images[0].url class="col-md-12">
-    <a href="#" class="btn btn-warning " routerlink="boardgame">
+    <a href="javascript:void(0)" class="btn btn-warning " routerlink="boardgame">
       <i class="fas fa-heart"></i>
       Añadir a favoritos
     </a>
@@ -54,13 +54,13 @@
         </form>
       </div>
       <br>
-      <a [href]="boardgame.tutorialLink" class="btn btn-primary btn-class col-md-3" routerlink="boardgame">
+      <a [href]="boardgame.tutorialLink" class="btn btn-primary btn-class col-md-3">
         <i class="fab fa-youtube"></i>
         Ver tutorial
       </a>
       <label for="" class="label-class">Cant:</label>
       <input type="number" class="input-class col-md-1" [(ngModel)]="cant">
-      <a href="#" class="btn btn-primary" routerlink="boardgame">
+      <a href="javascript:void(0)" class="btn btn-primary" routerlink="boardgame">
         <i class="fas fa-shopping-cart"></i>
         Anadir al carrito
       </a>

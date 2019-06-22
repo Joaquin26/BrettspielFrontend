@@ -1,0 +1,43 @@
+<!-- Button trigger modal -->
+
+<!--Boton de activación
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+
+<div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-target=".bd-example-modal-xl">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Snack</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let snack of snacks" class="col-md-2 card">
+          <div class=" text-center ">
+            <img [src]=snack.images[0].url class="imag-card card-img-top ">
+            <div class="card-body">
+              <h5 class="card-title">{{snack.name}}</h5>
+              <p class="card-text">Contenido: {{snack.sizeValue}}{{snack.siUnits}}</p>
+              <p class="card-text">Precio: S/.{{snack.price}}</p>
+              <input type="number" class="input-class col-md-5" value=1 [id]=snack.name>
+              <br>
+              <a href="#" class="btn btn-primary" routerlink="boardgame">
+                <i class="fas fa-shopping-cart"></i>
+                Añadir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
