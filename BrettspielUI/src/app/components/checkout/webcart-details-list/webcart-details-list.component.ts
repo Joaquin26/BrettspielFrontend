@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Webcart} from '../../../model/Webcart';
 import {WebcartService} from '../../../services/webcart.service';
 import {User} from '../../../model/user';
@@ -17,6 +17,11 @@ export class WebcartDetailsListComponent implements OnInit {
     endRentDay: Date;
     rentDays: number;
 
+    @Output()
+    getStartRentDay = new EventEmitter<Date>();
+    @Output()
+    getEndRentDay = new EventEmitter<Date>();
+
     totalSnackPrice = 0;
     totalGameboardPrice = 0;
 
@@ -33,7 +38,11 @@ export class WebcartDetailsListComponent implements OnInit {
     loadData() {
         this.userService.currentUser
             .subscribe(user => this.user = user);
+<<<<<<< HEAD
         this.webcartService.currentWebcart
+=======
+        this.webcartService.getWebcartByUserId(this.user.id)
+>>>>>>> 8e14acd3c4688694328eb7185ed5fac625626a81
             .subscribe((webcart => {
                 this.webCart = webcart;
                 this.loadTotalPrices();
@@ -71,6 +80,8 @@ export class WebcartDetailsListComponent implements OnInit {
             this.rentDays = Math.ceil(dateDiff / (1000 * 3600 * 24));
 
             this.loadTotalPrices();
+            this.getStartRentDay.emit(this.startRentDay);
+            this.getEndRentDay.emit(this.endRentDay);
         }
     }
 }
