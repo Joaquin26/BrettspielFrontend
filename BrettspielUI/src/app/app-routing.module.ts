@@ -19,7 +19,7 @@ const routes: Routes = [
     { path: 'user/:username', component: UserComponent },
     { path: 'snack',component:SnackListComponent},
     { path: '404', component:NotFoundComponent},
-    { path: '*/*/', component:NotFoundComponent}
+    { path: '**', component:NotFoundComponent}
  
 ];
 

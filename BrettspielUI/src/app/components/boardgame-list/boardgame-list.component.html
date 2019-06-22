@@ -90,7 +90,7 @@
     <div *ngFor="let boardgame of boardgames" class="col-md-2 card"
       (click)="gotoProductDetailsV2('/boardgame',boardgame.name)">
       <div class=" text-center ">
-        <img [src]=boardgame.images[0].url class="imag-card card-img-top ">
+        <img [src]="" class="imag-card card-img-top ">
         <div class="card-body">
           <h5 class="card-title">{{boardgame.name}}</h5>
           <p class="card-text">Precio por día: S/.{{boardgame.pricePerDay}}</p>
