@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import { WebcartService } from 'src/app/services/webcart.service';
+import { Webcart } from 'src/app/model/Webcart';
 
 @Component({
     selector: 'app-webcart-checkout',
@@ -10,7 +12,7 @@ export class WebcartCheckoutComponent implements OnInit {
     startRentDay: Date;
     endRentDay: Date;
 
-    constructor() {
+    constructor(private webcartService:WebcartService) {
     }
 
     ngOnInit() {
@@ -22,5 +24,10 @@ export class WebcartCheckoutComponent implements OnInit {
 
     getEndRentDay(ev) {
         this.endRentDay = ev;
+    }
+    Update()
+    {
+        var fakewc:Webcart=JSON.parse(localStorage.getItem("carrito"));
+        this.webcartService.webcart.next(fakewc)
     }
 }

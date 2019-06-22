@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {WebcartDetail} from '../../../model/WebcartDetail';
+import { WebcartService } from 'src/app/services/webcart.service';
 
 @Component({
     selector: 'app-webcart-details-boardgame-detail',
@@ -17,10 +18,12 @@ export class WebcartDetailsBoardgameDetailComponent implements OnInit {
 
     totalGameboardPrice = 0;
 
-    constructor() {
+    constructor(private webcartService:WebcartService) {
+        
     }
 
     ngOnInit() {
+        this.webcartService.currentWebcart.subscribe(data=>this.webcartDetails=data.webCartDetails)
     }
 
     updateTotalGameboardPrice() {
