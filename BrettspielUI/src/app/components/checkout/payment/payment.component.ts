@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CreditCard } from '../../../model/CreditCard';
 import { CreditcardService } from '../../../services/creditcard.service';
-import { Bill } from '../../../model/Bill';
 import { UserService } from '../../../services/user.service';
 import { BillService } from '../../../services/bill.service';
 import { DatePipe } from '@angular/common';
+import {Webcart} from '../../../model/Webcart';
+import {WebcartService} from '../../../services/webcart.service';
 
 @Component({
     selector: 'app-payment',
@@ -16,19 +17,47 @@ export class PaymentComponent implements OnInit {
 
     creditcard: CreditCard = new CreditCard();
     creditcardExists: CreditCard;
-    bill: Bill = new Bill();
+    webcart: Webcart;
     @Input()
     startRentDay: Date;
     @Input()
     endRentDay: Date;
 
     constructor(private datePipe: DatePipe,
-        private billService: BillService,
-        private creditcardService: CreditcardService,
-        private userService: UserService) {
+                private billService: BillService,
+                private creditcardService: CreditcardService,
+                private userService: UserService,
+                private webcartService: WebcartService) {
     }
 
     ngOnInit() {
+        this.loadWebcart();
+    }
+
+    loadWebcart() {
+        this.webcartService.currentWebcart
+            .subscribe((webcart => {
+                this.webcart = webcart;
+            }));
+    }
+
+    finishCheckout() {
+        // this.updateBoardgamesSnacks();
+        this.saveCreditcard();
+        this.createBill();
+        // this.saveWebcart();
+    }
+
+    updateBoardgamesSnacks() {
+        for (const webcartDetail of this.webcart.webCartDetails) {
+            if (webcartDetail.boardGame != null) {
+                webcartDetail.boardGame.available -= webcartDetail.quantity;
+                webcartDetail.boardGame.rented += webcartDetail.quantity;
+            }
+            if (webcartDetail.snack != null) {
+                webcartDetail.snack.stock -= webcartDetail.quantity;
+            }
+        }
     }
 
     saveCreditcard() {
@@ -46,7 +75,6 @@ export class PaymentComponent implements OnInit {
     }
 
     createBill() {
-
         const x = {
             creditCard: {
                 id: 0
@@ -72,9 +100,11 @@ export class PaymentComponent implements OnInit {
                     .subscribe();
             }
             );
+    }
 
-
-
-
+    saveWebcart() {
+        this.webcart.cancelledDate = this.datePipe.transform(new Date(Date.now()), 'dd/MM/yyyy');
+        this.webcartService.webcart.next(this.webcart);
+        this.webcartService.saveWebcart(this.webcart);
     }
 }

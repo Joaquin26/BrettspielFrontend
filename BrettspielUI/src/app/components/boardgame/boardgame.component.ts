@@ -20,7 +20,8 @@ export class BoardgameComponent implements OnInit {
   name:String;
   cant:number;
   webcart:Webcart;
-  constructor(private boardgameService: BoardgameService,private webcartService:WebcartService,private webcartDetailService:WebcartDetailService, private activatedRoute: ActivatedRoute,private router: Router) {
+  constructor(private boardgameService: BoardgameService,private webcartService:WebcartService,
+    private webcartDetailService:WebcartDetailService, private activatedRoute: ActivatedRoute,private router: Router) {
     this.cant=1;
     this.webcart=new Webcart();
     this.boardgame=new BoardGame()

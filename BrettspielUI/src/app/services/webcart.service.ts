@@ -20,6 +20,11 @@ export class WebcartService {
   public getWebcartByUserId(userId: number): Observable<any> {
     return this.http.get(`${this.baseURL}/findWebcartByUserId/${userId}`);
   }
+
+  saveWebcart(webcart: object): Observable<object> {
+    return this.http.post(`${this.baseURL}`, webcart);
+  }
+
   assignWebcart(userId)
   {
       if(userId !=-1){
