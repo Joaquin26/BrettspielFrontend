@@ -7,9 +7,9 @@ export class WebcartDetail {
 
     
     id: Number;
-    snack: Snack = new Snack();
-    boardGame: BoardGame = new BoardGame();
-    promotion: Promotion = new Promotion();
+    snack: Snack;
+    boardGame: BoardGame;
+    promotion: Promotion;
     quantity: number;
     webCart:Webcart;
 }

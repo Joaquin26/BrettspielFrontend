@@ -4,8 +4,8 @@ import {User} from './user';
 export class Bill {
     id: number;
     date: Date;
-    startRentDay: Date;
-    endRentDay: Date;
+    startRentDayDate: Date;
+    endRentDayDate: Date;
     status: string;
     membershipDiscount: number;
     penalty: number;

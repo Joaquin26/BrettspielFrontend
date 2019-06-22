@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CreditCard} from '../../../model/CreditCard';
-import {CreditcardService} from '../../../services/creditcard.service';
-import {Bill} from '../../../model/Bill';
-import {UserService} from '../../../services/user.service';
-import {BillService} from '../../../services/bill.service';
-import {DatePipe} from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { CreditCard } from '../../../model/CreditCard';
+import { CreditcardService } from '../../../services/creditcard.service';
+import { Bill } from '../../../model/Bill';
+import { UserService } from '../../../services/user.service';
+import { BillService } from '../../../services/bill.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-payment',
@@ -23,9 +23,9 @@ export class PaymentComponent implements OnInit {
     endRentDay: Date;
 
     constructor(private datePipe: DatePipe,
-                private billService: BillService,
-                private creditcardService: CreditcardService,
-                private userService: UserService) {
+        private billService: BillService,
+        private creditcardService: CreditcardService,
+        private userService: UserService) {
     }
 
     ngOnInit() {
@@ -39,7 +39,7 @@ export class PaymentComponent implements OnInit {
                     this.creditcardService.saveCreditcard(this.creditcard)
                         .subscribe();
                 } else {
-                  this.creditcard.id = this.creditcardExists.id;
+                    this.creditcard.id = this.creditcardExists.id;
                 }
                 this.createBill();
             });
@@ -52,11 +52,11 @@ export class PaymentComponent implements OnInit {
                 id: 0
             },
             date: this.datePipe.transform(new Date(Date.now()), 'dd/MM/yyyy'),
-            endRentDay: this.datePipe.transform(this.endRentDay, 'dd/MM/yyyy'),
+            endRentDayDate: this.datePipe.transform(this.endRentDay, 'dd/MM/yyyy'),
             membershipDiscount: 0,
             penalty: 0,
             ruc: 0,
-            startRentDay: this.datePipe.transform(this.startRentDay, 'dd/MM/yyyy'),
+            startRentDayDate: this.datePipe.transform(this.startRentDay, 'dd/MM/yyyy'),
             status: 'Recoger',
             user: {
                 id: 0
@@ -64,12 +64,17 @@ export class PaymentComponent implements OnInit {
         };
         this.userService.currentUser
             .subscribe(user => x.user.id = user.id);
+
         this.creditcardService.creditCardExistsByNumber(this.creditcard.number)
-            .subscribe(creditcard => x.creditCard.id = creditcard.id);
+            .subscribe(creditcard => {
+                x.creditCard.id = creditcard.id;
+                this.billService.saveBill(x)
+                    .subscribe();
+            }
+            );
 
-        console.log(x);
 
-        this.billService.saveBill(x)
-            .subscribe();
+
+
     }
 }
