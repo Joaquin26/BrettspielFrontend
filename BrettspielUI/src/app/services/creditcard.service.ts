@@ -15,8 +15,4 @@ export class CreditcardService {
   saveCreditcard(creditcard: CreditCard): Observable<object> {
     return this.http.post(`${this.baseURL}`, creditcard);
   }
-
-  creditCardExistsByNumber(numberC: number): Observable<any> {
-    return this.http.get(`${this.baseURL}/findByNumber/${numberC}`);
-  }
 }
