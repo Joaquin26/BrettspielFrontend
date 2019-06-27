@@ -74,7 +74,7 @@ export class NavBarComponent implements OnInit,OnDestroy {
 
     var webcart:Webcart;
     webcart=JSON.parse( localStorage.getItem("carrito"))
-    this.webcartDetailService.save(webcart);
+    this.webcartService.save(webcart);
     let fakeuser = new User();
     fakeuser.id = -1;
     this.userService.user.next(fakeuser)

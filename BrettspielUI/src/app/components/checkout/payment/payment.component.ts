@@ -105,6 +105,5 @@ export class PaymentComponent implements OnInit {
     saveWebcart() {
         this.webcart.cancelledDate = this.datePipe.transform(new Date(Date.now()), 'dd/MM/yyyy');
         this.webcartService.webcart.next(this.webcart);
-        this.webcartService.saveWebcart(this.webcart);
     }
 }
