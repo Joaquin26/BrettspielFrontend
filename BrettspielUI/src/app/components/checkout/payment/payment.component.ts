@@ -14,7 +14,8 @@ import {BillDetail} from '../../../model/BillDetail';
 import {BillCopyDetail} from '../../../model/BillCopyDetail';
 import {BatchService} from '../../../services/batch.service';
 import {Bill} from '../../../model/Bill';
-import {WebcartDetail} from "../../../model/WebcartDetail";
+import {WebcartDetail} from '../../../model/WebcartDetail';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-payment',
@@ -42,7 +43,8 @@ export class PaymentComponent implements OnInit {
                 private boardgameService: BoardgameService,
                 private snackService: SnackService,
                 private copyService: CopyService,
-                private batchService: BatchService) {
+                private batchService: BatchService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -62,6 +64,7 @@ export class PaymentComponent implements OnInit {
 
     finishCheckout() {
         this.actualizarDatos1(this.webcart);
+        this.router.navigateByUrl('home');
     }
 
     actualizarDatos2(n: number, webCartDetails: WebcartDetail[]) {
