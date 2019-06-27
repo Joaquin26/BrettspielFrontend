@@ -14,6 +14,7 @@ import {BillDetail} from '../../../model/BillDetail';
 import {BillCopyDetail} from '../../../model/BillCopyDetail';
 import {BatchService} from '../../../services/batch.service';
 import {Bill} from '../../../model/Bill';
+import {WebcartDetail} from "../../../model/WebcartDetail";
 
 @Component({
     selector: 'app-payment',
@@ -60,40 +61,50 @@ export class PaymentComponent implements OnInit {
     }
 
     finishCheckout() {
-        this.updateBoardgamesSnacks();
-        // this.createBill();
+        this.actualizarDatos1(this.webcart);
     }
 
-    updateBoardgamesSnacks() {
-        for (const webcartDetail of this.webcart.webCartDetails) {
-            // if (webcartDetail.boardGame != null) {
-            //     this.copyService.selectLimitAvailableByBoardGameId(webcartDetail.boardGame.id, webcartDetail.quantity)
-            //         .subscribe((copies => {
-            //             for (const copy of copies) {
-            //                 this.billCopyDetails.push(new BillCopyDetail(copy));
-            //                 copy.available = false;
-            //                 this.copyService.updateCopyById(copy).subscribe();
-            //             }
-            //
-            //             webcartDetail.boardGame.available -= webcartDetail.quantity;
-            //             webcartDetail.boardGame.rented += webcartDetail.quantity;
-            //             this.boardgameService.updateBoardgameById(webcartDetail.boardGame).subscribe();
-            //         }));
-            // }
-            if (webcartDetail.snack != null) {
-                this.batchService.selectBySnackId(webcartDetail.snack.id)
+    actualizarDatos2(n: number, webCartDetails: WebcartDetail[]) {
+        if (n < webCartDetails.length) {
+            if (webCartDetails[n].boardGame != null) {
+                this.copyService.selectLimitAvailableByBoardGameId(webCartDetails[n].boardGame.id, webCartDetails[n].quantity)
+                    .subscribe((copies => {
+                        for (const copy of copies) {
+                            this.billCopyDetails.push(new BillCopyDetail(copy));
+                            copy.available = false;
+                            this.copyService.updateCopyById(copy).subscribe();
+                        }
+
+                        webCartDetails[n].boardGame.available -= webCartDetails[n].quantity;
+                        webCartDetails[n].boardGame.rented += webCartDetails[n].quantity;
+                        this.boardgameService.updateBoardgameById(webCartDetails[n].boardGame).subscribe();
+
+                        this.actualizarDatos2(n + 1, webCartDetails);
+                    }));
+            }
+            if (webCartDetails[n].snack != null) {
+                this.batchService.selectBySnackId(webCartDetails[n].snack.id)
                     .subscribe((batch => {
                         this.billDetails.push(new BillDetail(
                             batch,
-                            webcartDetail.quantity,
-                            webcartDetail.snack.price * webcartDetail.quantity
+                            webCartDetails[n].quantity,
+                            webCartDetails[n].snack.price * webCartDetails[n].quantity
                         ));
 
-                        // webcartDetail.snack.stock -= webcartDetail.quantity;
-                        // this.snackService.updateSnackById(webcartDetail.snack).subscribe();
+                        webCartDetails[n].snack.stock -= webCartDetails[n].quantity;
+                        this.snackService.updateSnackById(webCartDetails[n].snack).subscribe();
+
+                        this.actualizarDatos2(n + 1, webCartDetails);
                     }));
             }
         }
+        if (n === webCartDetails.length) {
+            this.createBill();
+        }
+    }
+
+    actualizarDatos1(webcart: Webcart) {
+        this.actualizarDatos2(0, webcart.webCartDetails);
     }
 
     createBill() {

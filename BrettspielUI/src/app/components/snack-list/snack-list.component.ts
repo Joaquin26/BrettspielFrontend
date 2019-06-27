@@ -40,7 +40,7 @@ export class SnackListComponent implements OnInit {
       wbd.quantity = 1;
       var fakewb: Webcart = new Webcart()
       fakewb.id = this.webcart.id;
-      wbd.webCart = fakewb;
+      wbd.webCartId = fakewb.id;
       var webcart: Webcart = JSON.parse(localStorage.getItem("carrito"));
       webcart.webCartDetails.push(wbd)
       localStorage.removeItem("carrito")

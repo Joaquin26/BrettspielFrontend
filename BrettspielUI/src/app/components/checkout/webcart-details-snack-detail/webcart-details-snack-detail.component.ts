@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {WebcartDetail} from '../../../model/WebcartDetail';
+import { WebcartService } from 'src/app/services/webcart.service';
+import { Webcart } from 'src/app/model/Webcart';
 
 @Component({
     selector: 'app-webcart-details-snack-detail',
@@ -15,10 +17,12 @@ export class WebcartDetailsSnackDetailComponent implements OnInit {
 
     totalSnackPrice = 0;
 
-    constructor() {
+    constructor(private webcartService:WebcartService) {
     }
 
+
     ngOnInit() {
+        this.webcartService.currentWebcart.subscribe(data=>this.webcartDetails=data.webCartDetails)
         this.getTotalSnackPrice.emit(this.totalSnackPrice);
     }
 
@@ -38,7 +42,12 @@ export class WebcartDetailsSnackDetailComponent implements OnInit {
                 this.webcartDetails.splice(i, 1);
             }
         }
-
+        var fakewb=new Webcart();
+        this.webcartService.currentWebcart.subscribe(data=>fakewb=data)
+        fakewb.webCartDetails=this.webcartDetails;
+        this.webcartService.webcart.next(fakewb);
+        localStorage.removeItem("carrito");
+        localStorage.setItem("carrito",JSON.stringify(fakewb));
         this.updateTotalSnackPrice();
     }
 }
