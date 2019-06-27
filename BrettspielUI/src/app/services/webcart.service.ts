@@ -21,8 +21,9 @@ export class WebcartService {
     return this.http.get(`${this.baseURL}/findWebcartByUserId/${userId}`);
   }
 
-  saveWebcart(webcart: object): Observable<object> {
-    return this.http.post(`${this.baseURL}`, webcart);
+  public saveWebcart(webcarts: Webcart){
+     this.http.put(`${this.baseURL}`,webcarts).subscribe();
+   
   }
 
   assignWebcart(userId)

@@ -1,5 +1,7 @@
 import {CreditCard} from './CreditCard';
 import {User} from './user';
+import {BillDetail} from "./BillDetail";
+import {BillCopyDetail} from "./BillCopyDetail";
 
 export class Bill {
     id: number;
@@ -12,4 +14,6 @@ export class Bill {
     ruc: number;
     user: User;
     creditCard: CreditCard;
+    billDetails: BillDetail[];
+    billCopyDetails: BillCopyDetail[];
 }
