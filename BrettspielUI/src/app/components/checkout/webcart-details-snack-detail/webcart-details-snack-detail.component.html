@@ -1,42 +1,41 @@
 <table class="table table-sm">
     <thead>
-    <tr>
-        <th scope="col">Producto</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Disponibilidad</th>
-        <th scope="col">Precio unitario</th>
-        <th scope="col">Cantidad</th>
-        <th scope="col">Precio total</th>
-    </tr>
+        <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Disponibilidad</th>
+            <th scope="col">Precio unitario</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio total</th>
+        </tr>
     </thead>
     <tbody>
-    <ng-container *ngFor="let webcartDetail of webcartDetails">
-        <tr *ngIf="webcartDetail.snack != null">
-            <td><img [src]=webcartDetail.snack.images[0].url alt="snackImage" height="100" width="100"></td>
-            <td>{{ webcartDetail.snack.name }}</td>
+        <ng-container *ngFor="let webcartDetail of webcartDetails">
+            <tr *ngIf="webcartDetail.snack != null">
+                <td><img [src]=webcartDetail.snack.images[0].url alt="snackImage" height="100" width="100"></td>
+                <td>{{ webcartDetail.snack.name }}</td>
 
-            <td *ngIf="webcartDetail.snack.stock > 0; else notAvailable">
-                Disponible
-            </td>
-            <ng-template #notAvailable>
-                No Disponible
-            </ng-template>
+                <td *ngIf="webcartDetail.snack.stock > 0; else notAvailable">
+                    Disponible
+                </td>
+                <ng-template #notAvailable>
+                    No Disponible
+                </ng-template>
 
-            <td>S/.{{ webcartDetail.snack.price }}</td>
+                <td>S/.{{ webcartDetail.snack.price }}</td>
 
-            <td>
-                <label>
-                    <input
-                            [(ngModel)]="webcartDetail.quantity" max="{{ webcartDetail.snack.stock }}" min="1"
-                            step="1" type="number"
-                            value="{{ webcartDetail.quantity }}" (ngModelChange)="updateTotalSnackPrice()"
-                    />
-                </label>
-            </td>
+                <td>
+                    <label>
+                        <input [(ngModel)]="webcartDetail.quantity" max="{{ webcartDetail.snack.stock }}" min="1"
+                            step="1" type="number" value="{{ webcartDetail.quantity }}"
+                            (ngModelChange)="updateTotalSnackPrice()" />
+                    </label>
+                </td>
 
-            <td>S/.{{ (webcartDetail.quantity * webcartDetail.snack.price).toFixed(2) }}</td>
-            <td><button type="button" class="btn btn-danger" (click)="deleteWebcartDetailById(webcartDetail.snack.id)">Eliminar</button></td>
-        </tr>
-    </ng-container>
+                <td>S/.{{ (webcartDetail.quantity * webcartDetail.snack.price).toFixed(2) }}</td>
+                <td><button type="button" class="btn btn-danger"
+                        (click)="deleteWebcartDetailById(webcartDetail.snack.id)">Eliminar</button></td>
+            </tr>
+        </ng-container>
     </tbody>
 </table>

@@ -6,7 +6,7 @@
 </button> -->
 
 
-<div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade bd-example-modal-xl row" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true" data-target=".bd-example-modal-xl">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
@@ -16,7 +16,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body row">
         <div *ngFor="let snack of snacks" class="col-md-2 card">
           <div class=" text-center ">
             <img [src]=snack.images[0].url class="imag-card card-img-top ">

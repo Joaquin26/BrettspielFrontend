@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {WebcartDetail} from '../../../model/WebcartDetail';
 import { WebcartService } from 'src/app/services/webcart.service';
+import { Webcart } from 'src/app/model/Webcart';
 
 @Component({
     selector: 'app-webcart-details-boardgame-detail',
@@ -40,6 +41,15 @@ export class WebcartDetailsBoardgameDetailComponent implements OnInit {
         for (let i = 0; i < this.webcartDetails.length; i++) {
             if (this.webcartDetails[i].boardGame.id === id) {
                 this.webcartDetails.splice(i, 1);
+                var fakewebcart:Webcart;
+                this.webcartService.currentWebcart.subscribe(data=>{
+                    fakewebcart=data
+                })
+                fakewebcart.webCartDetails=this.webcartDetails;
+                this.webcartService.webcart.next(fakewebcart)
+                localStorage.removeItem("carrito")
+                localStorage.setItem("carrito",JSON.stringify(fakewebcart))
+                
             }
         }
 

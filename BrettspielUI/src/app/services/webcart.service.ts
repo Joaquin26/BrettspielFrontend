@@ -36,7 +36,8 @@ export class WebcartService {
           webcart.webCartDetails=new Array();
           }
         localStorage.setItem("carrito",JSON.stringify(webcart));
-        this.webcart.next(webcart)  
+        webcart=JSON.parse( localStorage.getItem("carrito"))
+        this.webcart.next(webcart)
       })
        
  
