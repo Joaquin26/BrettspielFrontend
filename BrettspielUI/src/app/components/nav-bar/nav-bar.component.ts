@@ -28,7 +28,7 @@ export class NavBarComponent implements OnInit,OnDestroy {
   constructor(private userService: UserService, private categoryService: CategoryService,private router: Router,private webcartService:WebcartService,private webcartDetailService:WebcartDetailService) { }
 
   ngOnInit() {
-    
+
     this.index = new Boolean();
     this.index=false;
     this.userService.currentUser.subscribe(user => this.user = user)
@@ -74,7 +74,7 @@ export class NavBarComponent implements OnInit,OnDestroy {
 
     var webcart:Webcart;
     webcart=JSON.parse( localStorage.getItem("carrito"))
-    this.webcartService.save(webcart);
+    this.webcartService.saveWebcart(webcart);
     let fakeuser = new User();
     fakeuser.id = -1;
     this.userService.user.next(fakeuser)
@@ -146,6 +146,6 @@ export class NavBarComponent implements OnInit,OnDestroy {
     this.webcartService.webcart.next(fakewc)
     var webcart:Webcart;
     webcart=JSON.parse( localStorage.getItem("carrito"))
-    this.webcartDetailService.save(webcart);
+    this.webcartService.saveWebcart(webcart);
   }
 }
