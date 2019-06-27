@@ -35,6 +35,12 @@ export class WebcartDetailsBoardgameDetailComponent implements OnInit {
             }
         }
         this.getTotalGameboardPrice.emit(this.totalGameboardPrice);
+        var fakewb=new Webcart();
+        this.webcartService.currentWebcart.subscribe(data=>fakewb=data)
+        fakewb.webCartDetails=this.webcartDetails;
+        this.webcartService.webcart.next(fakewb);
+        localStorage.removeItem("carrito");
+        localStorage.setItem("carrito",JSON.stringify(fakewb));
     }
 
     deleteWebcartDetailById(id) {
@@ -52,7 +58,12 @@ export class WebcartDetailsBoardgameDetailComponent implements OnInit {
                 
             }
         }
-
+        var fakewb=new Webcart();
+        this.webcartService.currentWebcart.subscribe(data=>fakewb=data)
+        fakewb.webCartDetails=this.webcartDetails;
+        this.webcartService.webcart.next(fakewb);
+        localStorage.removeItem("carrito");
+        localStorage.setItem("carrito",JSON.stringify(fakewb));
         this.updateTotalGameboardPrice();
     }
 }
