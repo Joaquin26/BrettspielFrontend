@@ -67,7 +67,6 @@ export class BoardgameComponent implements OnInit {
       this.webcartService.webcart.next(webcart)
       this.message = "Se agrego al carrito: " + this.cant + " " + this.boardgame.name;
       this.show = true;
-    
   }
   guardar() {
     var webcart: Webcart;
