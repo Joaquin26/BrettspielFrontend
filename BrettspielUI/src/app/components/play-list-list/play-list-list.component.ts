@@ -9,18 +9,27 @@ import { PlayListService } from 'src/app/services/play-list.service';
   styleUrls: ['./play-list-list.component.css']
 })
 export class PlayListListComponent implements OnInit {
- 
-  constructor(private userService:UserService,private playListService:PlayListService) {
-    this.playLists=new Array()
-   }
-   @Input() playLists:PlayList[]
+
+  private playList: PlayList;
+  constructor(private userService: UserService, private playListService: PlayListService) {
+    this.playLists = new Array()
+    this.playList = new PlayList();
+    this.playList.name="";
+    this.playList.description="";
+  }
+  @Input() playLists: PlayList[]
   ngOnInit() {
-    console.log()
     this.loadData()
   }
-  loadData()
-  {
-   
+  loadData() {
+
+  }
+
+  createPlayList() {
+    //console.log(this.userService.user.value);
+    this.playList.user=this.userService.user.value;
+    console.log(this.playList);
+    this.playListService.createPlayList(this.playList).subscribe();
   }
 
 }

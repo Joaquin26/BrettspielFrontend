@@ -31,4 +31,8 @@ export class BoardgameService {
     return this.http.put(`${this.baseURL}`, boardgame);
   }
 
+  getBoardGamesByPlayList(id:number):Observable<any>{
+    return this.http.get(`${this.baseURL}/PlayList/${id}`);
+  }
+
 }
