@@ -15,7 +15,7 @@ import {BillCopyDetail} from '../../../model/BillCopyDetail';
 import {BatchService} from '../../../services/batch.service';
 import {Bill} from '../../../model/Bill';
 import {WebcartDetail} from '../../../model/WebcartDetail';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-payment',
@@ -88,6 +88,7 @@ export class PaymentComponent implements OnInit {
             if (webCartDetails[n].snack != null) {
                 this.batchService.selectBySnackId(webCartDetails[n].snack.id)
                     .subscribe((batch => {
+
                         this.billDetails.push(new BillDetail(
                             batch,
                             webCartDetails[n].quantity,
@@ -111,21 +112,26 @@ export class PaymentComponent implements OnInit {
     }
 
     createBill() {
+        const datePipe = new DatePipe('en-US');
+        const date = datePipe.transform(Date.now(), 'dd/MM/yyyy');
+        const startRentDayDate = datePipe.transform(this.startRentDay, 'dd/MM/yyyy');
+        const endRentDayDate = datePipe.transform(this.endRentDay, 'dd/MM/yyyy');
+
         this.billService.saveBill(
             {
                 id: undefined,
                 user: this.user,
                 creditCard: this.creditcard,
-                date: new Date(Date.now()),
+                date,
                 status: 'Paid',
                 ruc: 0,
                 penalty: 0,
                 membershipDiscount: 0,
-                startRentDayDate: this.startRentDay,
-                endRentDayDate: this.endRentDay,
+                startRentDayDate,
+                endRentDayDate,
                 billDetails: this.billDetails,
                 billCopyDetails: this.billCopyDetails
-            } as Bill
+            }
         ).subscribe();
     }
 }
