@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BoardgameService } from 'src/app/services/boardgame.service';
+import { BoardGame } from 'src/app/model/Boardgame';
 
 @Component({
   selector: 'app-play-list-detail',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayListDetailComponent implements OnInit {
 
-  constructor() { }
+  @Input() playListId: number
+  boardGames: BoardGame[];
+  constructor(private boardGameService: BoardgameService) { }
 
   ngOnInit() {
+    this.loadData();
   }
 
+  loadData() {
+    this.boardGameService.getBoardGamesByPlayList(this.playListId)
+      .subscribe(boardGames => {
+        this.boardGames = boardGames;
+        console.log(boardGames);
+      });
+  }
 }

@@ -1,3 +1,6 @@
-<p>
-  play-list-detail works!
-</p>
+<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a *ngFor="let boardGame of boardGames" class="dropdown-item" [href]=""
+      >{{boardGame.name}}</a>
+    <!-- 
+      <a class="dropdown-item" href="#">Something else here</a> -->
+</div>

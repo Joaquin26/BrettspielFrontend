@@ -17,7 +17,7 @@ export class PlayListService {
 
   createPlayList(playList:PlayList)
   {
-    playList.id=null;
+    return this.http.post(`${this.baseURL}`,playList);
   }
 
 }
