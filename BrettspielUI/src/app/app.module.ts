@@ -31,6 +31,7 @@ import { PlayListDetailComponent } from './components/play-list-detail/play-list
 import { PlayListListComponent } from './components/play-list-list/play-list-list.component';
 import { PaymentComponent } from './components/checkout/payment/payment.component';
 import { MessageComponent } from './components/message/message.component';
+import { AddBoardgamePlayListComponent } from './components/add-boardgame-play-list/add-boardgame-play-list.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { MessageComponent } from './components/message/message.component';
     PlayListDetailComponent,
     PlayListListComponent,
     PaymentComponent,
-    MessageComponent
+    MessageComponent,
+    AddBoardgamePlayListComponent
   ],
   imports: [
     BrowserModule,

@@ -20,4 +20,9 @@ export class PlayListService {
     return this.http.post(`${this.baseURL}`,playList);
   }
 
+  updatePlayList(playList:Object){
+    console.log(playList);
+    return this.http.put(`${this.baseURL}`,playList).subscribe();
+  }
+
 }
