@@ -1,0 +1,37 @@
+<!-- <a href="javascript:void(0)" class="btn btn-warning " >
+    <i class="fas fa-heart"></i>
+    Añadir a favoritos
+</a>  -->
+<button type="button" class="btn btn-warning " data-toggle="modal" data-target="#exampleModalLong">
+    <i class="fas fa-heart"></i>
+    Añadir a favoritos
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Tus Listas de Juegos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let playList of playLists" class="row" style="margin-bottom: 2vh">
+                    <p class="col-md-5">{{playList.name}}</p>
+                    <span class="col-md-2"></span>
+                    <button *ngIf="verificar(playList)==false" type="button" class="btn btn-danger col-md-3" (click)="addBoardGame(playList)">
+                        <i class="fas fa-heart"></i>
+                        agregar
+                    </button>
+                    <button *ngIf="verificar(playList)==true" type="button" class="btn btn-warning col-md-3" (click)="deleteBoardGame(playList)">
+                        <i class="fas fa-trash-alt"></i>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

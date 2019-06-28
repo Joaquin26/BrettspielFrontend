@@ -2,10 +2,7 @@
   <div class="col-md-1"></div>
   <div class="col-md-3 text-center">
     <img [src]="boardgame.images[0].url" class="col-md-12">
-     <a href="javascript:void(0)" class="btn btn-warning " >
-      <i class="fas fa-heart"></i>
-      Añadir a favoritos
-    </a> 
+    <app-add-boardgame-play-list [boardGame]="boardgame"></app-add-boardgame-play-list>
   </div>
 
   <div class="col-md-5">
