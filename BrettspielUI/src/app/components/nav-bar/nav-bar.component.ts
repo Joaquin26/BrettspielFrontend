@@ -81,6 +81,7 @@ export class NavBarComponent implements OnInit,OnDestroy {
     this.router.navigateByUrl('/')
     localStorage.removeItem("session")
     localStorage.removeItem("carrito")
+    this.webcartService.assignWebcart(this.user.id)
   }
   signUp() {
     this.user.id = null;

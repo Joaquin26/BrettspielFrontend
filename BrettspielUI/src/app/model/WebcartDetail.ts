@@ -7,7 +7,7 @@ export class WebcartDetail {
 
     
     id: Number;
-    webCartId:Number;
+    webCart:Webcart;
     snack: Snack;
     boardGame: BoardGame;
     promotion: Promotion;

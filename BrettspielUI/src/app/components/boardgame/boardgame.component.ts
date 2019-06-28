@@ -52,14 +52,14 @@ export class BoardgameComponent implements OnInit {
 
   }
   addBoardGame() {
-    this.webcartService.currentWebcart.subscribe(webcart => this.webcart = webcart)
+ 
     var wbd: WebcartDetail = new WebcartDetail();
     this.webcartService.currentWebcart.subscribe(webcart => this.webcart = webcart)
       wbd.boardGame = this.boardgame;
       wbd.quantity = this.cant;
       var fakewb: Webcart = new Webcart()
       fakewb.id = this.webcart.id;
-      wbd.webCartId = fakewb.id;
+      wbd.webCart = fakewb;
       var webcart: Webcart = JSON.parse(localStorage.getItem("carrito"));
       webcart.webCartDetails.push(wbd)
       localStorage.removeItem("carrito")

@@ -33,6 +33,12 @@ export class WebcartDetailsSnackDetailComponent implements OnInit {
                 this.totalSnackPrice += webcartDetail.quantity * webcartDetail.snack.price;
             }
         }
+        var fakewb=new Webcart();
+        this.webcartService.currentWebcart.subscribe(data=>fakewb=data)
+        fakewb.webCartDetails=this.webcartDetails;
+        this.webcartService.webcart.next(fakewb);
+        localStorage.removeItem("carrito");
+        localStorage.setItem("carrito",JSON.stringify(fakewb));
         this.getTotalSnackPrice.emit(this.totalSnackPrice);
     }
 
