@@ -1,6 +1,21 @@
-<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <a *ngFor="let boardGame of boardGames" class="dropdown-item" [href]=""
-      >{{boardGame.name}}</a>
-    <!-- 
-      <a class="dropdown-item" href="#">Something else here</a> -->
+<div>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Producto</th>
+        <th scope="col">Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let boardGame of playList.boardGames">
+        <tr>
+          <td><img [src]=boardGame.images[0].url alt="boardgameImage" height="100" width="100"></td>
+          <td>{{ boardGame.name }}</td>
+
+          <td><button type="button" class="btn btn-danger"
+              (click)="deleteBoardGame(boardGame)">Eliminar</button></td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
 </div>

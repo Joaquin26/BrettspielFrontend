@@ -21,7 +21,7 @@ export class PlayListService {
   }
 
   updatePlayList(playList:Object){
-    console.log(playList);
+    //console.log(playList);
     return this.http.put(`${this.baseURL}`,playList).subscribe();
   }
 

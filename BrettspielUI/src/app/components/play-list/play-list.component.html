@@ -1,9 +1,7 @@
 <div *ngIf="playList">
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          {{playList.name}}
-        </a>
-        <app-play-list-detail [playListId]="playList.id"></app-play-list-detail  >
+        <h3>{{playList.name}}</h3>
+        <p>{{playList.description}}</p>
+        <app-play-list-detail [playList]="playList"></app-play-list-detail  >
     </li>
 </div>

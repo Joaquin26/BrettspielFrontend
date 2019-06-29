@@ -33,7 +33,7 @@ export class BoardgameListComponent implements OnInit {
     this.minCost = 0;
     this.maxCost = 200;
     this.minNumberPlayers = 1;
-    this.age = 8;
+    this.age = 0;
    
   }
  
