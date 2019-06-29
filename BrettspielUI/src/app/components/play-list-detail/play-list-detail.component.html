@@ -7,8 +7,8 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let boardGame of playList.boardGames">
-        <tr>
+      <ng-container *ngFor="let boardGame of playList.boardGames" >
+        <tr (click)="gotoBoardGameDetails('/boardgame',boardGame.name)">
           <td><img [src]=boardGame.images[0].url alt="boardgameImage" height="100" width="100"></td>
           <td>{{ boardGame.name }}</td>
 

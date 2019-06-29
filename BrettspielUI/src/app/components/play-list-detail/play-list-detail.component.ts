@@ -3,6 +3,7 @@ import { BoardgameService } from 'src/app/services/boardgame.service';
 import { BoardGame } from 'src/app/model/Boardgame';
 import { PlayList } from 'src/app/model/play-list';
 import { PlayListService } from 'src/app/services/play-list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-play-list-detail',
@@ -12,7 +13,7 @@ import { PlayListService } from 'src/app/services/play-list.service';
 export class PlayListDetailComponent implements OnInit {
 
   @Input() playList: PlayList
-  constructor(private playListService: PlayListService) { }
+  constructor(private playListService: PlayListService,private router:Router) { }
 
   ngOnInit() {
     this.loadData();
@@ -29,5 +30,9 @@ export class PlayListDetailComponent implements OnInit {
       }
     }
     this.playListService.updatePlayList(this.playList);
+  }
+  gotoBoardGameDetails(url,name){
+    var myurl = `${url}/${name}`;
+    this.router.navigateByUrl(myurl);
   }
 }
