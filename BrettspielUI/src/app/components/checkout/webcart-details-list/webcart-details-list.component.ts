@@ -3,6 +3,7 @@ import {Webcart} from '../../../model/Webcart';
 import {WebcartService} from '../../../services/webcart.service';
 import {User} from '../../../model/user';
 import {UserService} from '../../../services/user.service';
+import { WebcartDetail } from 'src/app/model/WebcartDetail';
 
 @Component({
     selector: 'app-webcart-details-list',
@@ -29,6 +30,7 @@ export class WebcartDetailsListComponent implements OnInit {
     user: User = new User();
 
     constructor(private webcartService: WebcartService, private userService: UserService) {
+        this.webCart.webCartDetails=new Array<WebcartDetail>();
     }
 
     ngOnInit() {
@@ -48,7 +50,8 @@ export class WebcartDetailsListComponent implements OnInit {
     loadTotalPrices() {
         this.totalSnackPrice = 0;
         this.totalGameboardPrice = 0;
-
+        if(this.webCart.webCartDetails==null)
+            this.webCart.webCartDetails=new Array<WebcartDetail>();
         for (const webcartDetail of this.webCart.webCartDetails) {
             if (webcartDetail.snack != null) {
                 this.totalSnackPrice += webcartDetail.quantity * webcartDetail.snack.price;

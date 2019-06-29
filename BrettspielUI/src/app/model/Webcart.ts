@@ -7,4 +7,7 @@ export class Webcart {
     cancelledDate:  Date;
     lastSeenDate:  Date;
     webCartDetails: WebcartDetail[];
+    public Webcart(){
+        this.webCartDetails=new Array<WebcartDetail>();
+    }
 }
